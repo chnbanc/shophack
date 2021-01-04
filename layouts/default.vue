@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="header-left">
                     <a href="#" class="mobile-menu-toggle">
-                        <i class="d-icon-bars2"></i>
+                        <i class="fas fa-bars"></i>
                     </a>
                 </div>
                 <div class="header-center">
@@ -19,7 +19,7 @@
                                 <a href="demo1.html">Home</a>
                             </li>
                             <li>
-                                <a href="shop.html">Categories</a>
+                                <a href="shop.html">Shops</a>
                                 <div class="megamenu">
                                     <div class="row">
                                         <div class="col-6 col-sm-4 col-md-3 col-lg-4">
@@ -71,7 +71,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a href="product.html">Products</a>
+                                <a href="product.html">All Products</a>
                                 <div class="megamenu">
                                     <div class="row">
                                         <div class="col-6 col-sm-4 col-md-3 col-lg-4">
@@ -122,95 +122,12 @@
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <a href="#">Pages</a>
-                                <ul>
-                                    <li><a href="about-us.html">About</a></li>
-                                    <li><a href="contact-us.html">Contact Us</a></li>
-                                    <li><a href="account.html">Login</a></li>
-                                    <li><a href="#">FAQs</a></li>
-                                    <li><a href="error-404.html">Error 404</a></li>
-                                    <li><a href="coming-soon.html">Coming Soon</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Blog</a>
-                                <ul>
-                                    <li><a href="blog-classic.html">Classic</a></li>
-                                    <li><a href="blog-listing.html">Listing</a></li>
-                                    <li>
-                                        <a href="#">Grid</a>
-                                        <ul>
-                                            <li><a href="blog-grid-2col.html">Grid 2 columns</a></li>
-                                            <li><a href="blog-grid-3col.html">Grid 3 columns</a></li>
-                                            <li><a href="blog-grid-4col.html">Grid 4 columns</a></li>
-                                            <li><a href="blog-grid-sidebar.html">Grid sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Masonry</a>
-                                        <ul>
-                                            <li><a href="blog-masonry-2col.html">Masonry 2 columns</a></li>
-                                            <li><a href="blog-masonry-3col.html">Masonry 3 columns</a></li>
-                                            <li><a href="blog-masonry-4col.html">Masonry 4 columns</a></li>
-                                            <li><a href="blog-masonry-sidebar.html">Masonry sidebar</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="#">Mask</a>
-                                        <ul>
-                                            <li><a href="blog-mask-grid.html">Blog mask grid</a></li>
-                                            <li><a href="blog-mask-masonry.html">Blog mask masonry</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="post-single.html">Single Post</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="d-xl-show">
-                                <a href="#">Elements</a>
-                                <ul>
-                                    <li><a href="element-products.html">Products</a></li>
-                                    <li><a href="element-typography.html">Typography</a></li>
-                                    <li><a href="element-titles.html">Titles</a></li>
-                                    <li><a href="element-categories.html">Product Category</a></li>
-                                    <li><a href="element-buttons.html">Buttons</a></li>
-                                    <li><a href="element-accordions.html">Accordions</a></li>
-                                    <li><a href="element-alerts.html">Alert &amp; Notification</a></li>
-                                    <li><a href="element-tabs.html">Tabs</a></li>
-                                    <li><a href="element-testimonials.html">Testimonials</a></li>
-                                    <li><a href="element-blog-posts.html">Blog Posts</a></li>
-                                    <li><a href="element-instagrams.html">Instagrams</a></li>
-                                    <li><a href="element-cta.html">Call to Action</a></li>
-                                    <li><a href="element-icon-boxes.html">Icon Boxes</a></li>
-                                    <li><a href="element-icons.html">Icons</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#">Buy Donald!</a>
-                            </li>
                         </ul>
                     </nav>
-                    <span class="divider"></span>
-                    <!-- End of Divider -->
-                    <div class="header-search hs-toggle">
-                        <a href="#" class="search-toggle">
-                            <i class="d-icon-search"></i>
-                        </a>
-                        <form action="#" class="input-wrapper">
-                            <input type="text" class="form-control" name="search" autocomplete="off"
-                                placeholder="Search your keyword..." required />
-                            <button class="btn btn-search" type="submit">
-                                <i class="d-icon-search"></i>
-                            </button>
-                        </form>
-                    </div>
-                    <!-- End of Header Search -->
                 </div>
                 <div class="header-right">
                     <a class="login" href="ajax/login.html">
-                        <i class="d-icon-user"></i>
+                        <i class="fas fa-user"></i>
                         <span>Login</span>
                     </a>
                     <!-- End of Login -->
@@ -286,24 +203,97 @@
                         <!-- End of Dropdown Box -->
                     </div>
 
-                    <div class="header-search hs-toggle mobile-search">
-                        <a href="#" class="search-toggle">
-                            <i class="d-icon-search"></i>
-                        </a>
-                        <form action="#" class="input-wrapper">
-                            <input type="text" class="form-control" name="search" autocomplete="off"
-                                placeholder="Search your keyword..." required />
-                            <button class="btn btn-search" type="submit">
-                                <i class="d-icon-search"></i>
-                            </button>
-                        </form>
-                    </div>
-                    <!-- End of Header Search -->
                 </div>
             </div>
         </div>
     </header>
     <Nuxt />
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <a href="demo1.html" class="logo-footer">
+                            <img src="../assets/images/logo-footer.png" alt="logo-footer" width="163" height="39" />
+                        </a>
+                        <!-- End of FooterLogo -->
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="widget widget-newsletter form-wrapper form-wrapper-inline">
+                            <div class="newsletter-info mx-auto mr-lg-2 ml-lg-4">
+                                <h4 class="widget-title">Subscribe to our Newsletter</h4>
+                                <p>Get all the latest information on Events, Sales and Offers.</p>
+                            </div>
+                            <form action="#" class="input-wrapper input-wrapper-inline">
+                                <input type="email" class="form-control" name="email" id="newsletter-email1"
+                                    placeholder="Email address here..." required />
+                                <button class="btn btn-primary btn-md ml-2" type="submit">subscribe<i
+                                        class="d-icon-arrow-right"></i></button>
+                            </form>
+                        </div>
+                        <!-- End of Newsletter -->
+                    </div>
+                </div>
+            </div>
+            <!-- End of FooterTop -->
+            <div class="footer-middle">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="widget">
+                            <h4 class="widget-title">Contact Info</h4>
+                            <ul class="widget-body">
+                                <li>
+                                    <label>Phone:</label>
+                                    <a href="#">Toll Free (123) 456-7890</a>
+                                </li>
+                                <li>
+                                    <label>Email:</label>
+                                    <a href="#">mail@donald.com</a>
+                                </li>
+                                <li>
+                                    <label>Address:</label>
+                                    <a href="#">123 Street Name, City, England</a>
+                                </li>
+                                <li>
+                                    <label>WORKING DAYS/HOURS</label>
+                                </li>
+                                <li>
+                                    <a href="#">Mon - Sun / 9:00 AM - 8:00 PM</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End of Widget -->
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="widget ml-lg-4">
+                            <h4 class="widget-title">My Account</h4>
+                            <ul class="widget-body">
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Order History</a></li>
+                                <li><a href="#">Returns</a></li>
+                                <li><a href="#">Custom Service</a></li>
+                                <li><a href="#">Terms &amp; Condition</a></li>
+                            </ul>
+                        </div>
+                        <!-- End of Widget -->
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="widget ml-lg-4">
+                            <h4 class="widget-title">Contact Info</h4>
+                            <ul class="widget-body">
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Order History</a></li>
+                                <li><a href="#">Returns</a></li>
+                                <li><a href="#">Custom Service</a></li>
+                                <li><a href="#">Terms &amp; Condition</a></li>
+                            </ul>
+                        </div>
+                        <!-- End of Widget -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
   </div>
 </template>
 

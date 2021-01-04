@@ -4,7 +4,7 @@
                     'delay': '.3s'
                 }">
         <div class="container pt-3">
-            <h2 class="title">Browse Our Categories</h2>
+            <h2 class="title">Browse Our Shops Available</h2>
             <div class="row">
                 <div class="col-md-3 col-6 mb-4">
                     <div
