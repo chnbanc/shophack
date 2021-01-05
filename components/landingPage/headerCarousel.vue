@@ -47,59 +47,75 @@
                         </h3>
                         <p class=" ls-m text-dark font-primary mb-6">
                             Receives Payments from Ghana, Nigeria, Kenya and UK.</p>
-                        <a href="#" class="btn btn-outline btn-dark">Register
+                        <a  @click="open" class="btn btn-outline btn-dark">Register
                             Shop</a>
                     </div>
                 </div>
             </div>
-            <!-- <div class="banner banner-fixed intro-slide2" style="background-color: #dddee0;">
-                <figure>
-                    <img src="../../assets/images/demos/demo1/slides/slide2.jpg" alt="intro-banner" width="1903"
-                        height="630" />
-                </figure>
-                <div class="container">
-                    <div class="banner-content y-50 ml-auto text-right">
-                        <h4 class="banner-subtitle ls-s mb-1  "
-                            data-animation-options="{'name': 'fadeInUp', 'duration': '.7s'}"><span
-                                class="d-block text-uppercase mb-2">Coming soon</span><strong
-                                class="font-weight-semi-bold ls-m">Donald Birthday</strong></h4>
-                        <h2 class="banner-title mb-2 d-inline-block font-weight-bold text-primary  "
-                            data-animation-options="{'name': 'fadeInRight', 'duration': '1.2s', 'delay': '.5s'}">
-                            Sale</h2>
-                        <p class="  font-primary ls-s text-dark mb-4"
-                            data-animation-options="{'name': 'fadeInUp', 'duration': '1s', 'delay': '1.2s'}">
-                            Up to 70% off on all products <br />online &amp; Free Shipping over $90</p>
-                        <a href="#" class="btn btn-dark  "
-                            data-animation-options="{'name': 'fadeInUp', 'duration': '1s', 'delay': '1.4s'}">Shop
-                            Now</a>
-                    </div>
-                </div>
+            <div class="bringToTop">
+                <c-modal
+                :is-open="isOpen"
+                :on-close="close"
+                :closeOnOverlayClick="true"
+                size= 'xl'
+                is-centered
+                >
+                <c-modal-content ref="content">
+                    <c-modal-header><h3>Register as a Seller</h3></c-modal-header>
+
+                    <c-modal-body>
+                        <c-box>
+                            <c-tabs variant="enclosed-colored" is-fitted>
+                                <c-tab-list>
+                                    <c-tab>Login</c-tab>
+                                    <c-tab>Register</c-tab>
+                                </c-tab-list>
+
+                                <c-tab-panels>
+                                    <c-tab-panel>
+                                        <div class="tab-pane active" id="signin">
+                                            <form action="#">
+                                                <div class="form-group">
+                                                    <label for="singin-email" class="mb-3">Username or email address:</label>
+                                                    <input type="text" class="form-control" id="singin-email" name="singin-email" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="singin-password" class="mb-3">Password:</label>
+                                                    <input type="password" class="form-control" id="singin-password" name="singin-password"
+                                                        required />
+                                                </div>
+                                                <button class="btn btn-primary btn-block mb-3" type="submit">Sign in</button>
+                                            </form>
+                                        </div>
+                                    </c-tab-panel>
+                                    <c-tab-panel>
+                                        <div class="tab-pane active" id="register">
+                                            <h6>Approval of shop costs $20</h6>
+                                            <form action="#">
+                                                <div class="form-group">
+                                                    <label for="singin-email">Your email address:</label>
+                                                    <input type="email" class="form-control" id="register-email" name="register-email"
+                                                        required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="singin-password">Password:</label>
+                                                    <input type="password" class="form-control" id="register-password" name="register-password"
+                                                        required />
+                                                </div>
+                                                <button class="btn btn-primary btn-block" type="submit">Sign up</button>
+                                            </form>
+                                        </div>
+                                    </c-tab-panel>
+                                </c-tab-panels>
+                            </c-tabs>
+                        </c-box>
+
+                        
+                    </c-modal-body>  
+                </c-modal-content>
+                <c-modal-overlay />
+                </c-modal>
             </div>
-            <div class="banner banner-fixed video-banner intro-slide3" style="background-color: #dddee0;">
-                <figure>
-                    <video src="../../assets/video/memory-of-a-woman.mp4" width="1903" height="630"></video>
-                </figure>
-                <div class="container">
-                    <div class="banner-content x-50 y-50 text-center">
-                        <h4 class="banner-subtitle text-white text-uppercase mb-3  "
-                            data-animation-options="{'name': 'fadeIn', 'duration': '.7s'}">Check out Donald
-                            Store</h4>
-                        <h2 class="banner-title mb-3 text-white font-weight-bold ls-m  "
-                            data-animation-options="{'name': 'fadeInUp', 'duration': '.7s', 'delay': '.5s'}">
-                            Fashion Collection</h2>
-                        <p class="  mb-5 text-white ls-s font-primary "
-                            data-animation-options="{'name': 'fadeInUp', 'duration': '1s', 'delay': '.8s'}">
-                            Up to 50% Off this Season’s &amp; Get free shipping<br />on all orders over
-                            $199.00</p>
-                        <a href="#" class="btn btn-outline btn-white   mr-3 mb-1"
-                            data-animation-options="{'name': 'fadeInLeft', 'duration': '1s', 'delay': '1.5s'}">Shop
-                            Men</a>
-                        <a href="#" class="btn btn-outline btn-white   mb-1"
-                            data-animation-options="{'name': 'fadeInRight', 'duration': '1s', 'delay': '1.5s'}">Shop
-                            Women</a>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </section>
 
@@ -109,6 +125,7 @@
 </template>
 
 <script>
+import { CThemeProvider, CReset, CButton } from '@chakra-ui/vue'
 import {
   CModal,
   CModalOverlay,
@@ -118,16 +135,31 @@ import {
   CModalBody,
   CModalCloseButton,
 } from "@chakra-ui/vue";
+import {
+  CTabs,
+  CTabList,
+  CTabPanels,
+  CTab,
+  CTabPanel } from '@chakra-ui/vue'
 export default {
-    components: {
-        CModal,
-        CModalOverlay,
-        CModalContent,
-        CModalHeader,
-        CModalFooter,
-        CModalBody,
-        CModalCloseButton
-    },
+  name: 'DefaultLayout',
+  components: {
+    CThemeProvider,
+    CReset,
+    CButton,
+    CModal,
+    CModalOverlay,
+    CModalContent,
+    CModalHeader,
+    CModalFooter,
+    CModalBody,
+    CModalCloseButton,
+    CTabs,
+    CTabList,
+    CTabPanels,
+    CTab,
+    CTabPanel
+  },
     data () {
         return {
             isOpen: false
