@@ -11,6 +11,8 @@ export default {
       { src: './assets/styles/imagesloaded/imagesloaded.pkgd.min.js', body:true },
       { src: './assets/styles/parallax/parallax.min.js', body:true },
       { src: './assets/styles/jquery/jquery.min.js', body:true },
+      { src: './assets/styles/photoswipe/photoswipe.min.js', body:true },
+      { src: './assets/styles/photoswipe/photoswipe-ui-default.min.js', body:true },
     ],
     meta: [
       { charset: 'utf-8' },
@@ -28,7 +30,9 @@ export default {
     './assets/styles/style.min.css',
     './assets/styles/animate/animate.min.css',
     './assets/styles/fontawesome-free/css/all.min.css',
-    './assets/styles/owl-carousel/owl.carousel.min.css'
+    './assets/styles/owl-carousel/owl.carousel.min.css',
+    './assets/styles/photoswipe/photoswipe.min.css',
+    './assets/styles/photoswipe/default-skin/default-skin.min.css'
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)

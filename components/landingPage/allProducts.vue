@@ -49,13 +49,6 @@
                     <div class="product-price">
                         <ins class="new-price">$199.00</ins><del class="old-price">$210.00</del>
                     </div>
-                    <div class="ratings-container">
-                        <div class="ratings-full">
-                            <span class="ratings" style="width:100%"></span>
-                            <span class="tooltiptext tooltip-top"></span>
-                        </div>
-                        <a href="product.html" class="rating-reviews">( 6 reviews )</a>
-                    </div>
                 </div>
             </div>
             <div class="product">

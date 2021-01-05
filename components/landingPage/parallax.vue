@@ -8,9 +8,9 @@
             <h3 class="banner-subtitle text-white font-weight-bold mb-2">Extra<span
                     class="label-star bg-primary text-uppercase text-white ml-2 mr-2">30% Off</span>Online
             </h3>
-            <h2 class="banner-title font-weight-bold text-uppercase text-white mb-2">Lifestyle Collection
+            <h2 class="banner-title font-weight-bold text-uppercase text-white mb-2">Register as a Store
             </h2>
-            <p class="font-primary text-white mb-6">Free shipping on orders over $99</p>
+            <p class="font-primary text-white mb-6">$20 Store Approval Fee</p>
             <a href="#" class="btn btn-solid pl-5 pr-5">Discover&nbsp;Now</a>
         </div>
     </section>

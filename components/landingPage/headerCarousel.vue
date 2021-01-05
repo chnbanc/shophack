@@ -7,10 +7,8 @@
                     <div class="slide-effect">
                         <img src="../../assets/images/demos/demo1/slides/Slider1_women.png"
                             class="  intro-slide1-img"
-                            data-animation-options="{'name': 'fadeInLeftShorter', 'duration': '1.2s', 'delay': '.5s'}"
                             alt="intro-banner" width="1180" height="630" />
-                        <div class="float-svg-container float-svg-1  "
-                            data-animation-options="{'name': 'fadeInRightShorter', 'duration': '1s', 'delay': '.2s'}">
+                        <div class="float-svg-container float-svg-1  ">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1" x="0px" y="0px"
                                 width="878.874px" height="615.792px" viewBox="0 -10 146.479 122.632"
@@ -21,8 +19,7 @@
                                 </path>
                             </svg>
                         </div>
-                        <div class="float-svg-container float-svg-2  "
-                            data-animation-options="{'name': 'fadeInRightShorter', 'duration': '1s', 'delay': '.2s'}">
+                        <div class="float-svg-container float-svg-2  ">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_2" x="0px" y="0px"
                                 width="710.678px" height="543.094px" viewBox="0 -10 165.274 146.301"
@@ -41,26 +38,18 @@
                         <h4 class="banner-subtitle text-uppercase font-weight-bold ls-l mb-2">
                             <span class="d-inline-block  "
                                 data-animation-options="{'name': 'fadeInRightShorter', 'duration': '1s', 'delay': '.2s'}">Buy
-                                2, Get</span>
-                            <span class="d-inline-block label-star bg-primary text-white  "
-                                data-animation-options="{'name': 'fadeInRightShorter', 'duration': '1s', 'delay': '.4s'}">1
-                                Free</span>
+                                Quick, and</span>
+                            <span class="d-inline-block label-star bg-primary text-white">Affordable</span>
                         </h4>
-                        <h2 class="banner-title text-uppercase font-weight-bold text-white lh-1 ls-l  "
+                        <h3 class="banner-title text-uppercase font-weight-bold text-white lh-1 ls-l  "
                             data-animation-options="{'name': 'fadeInUpShorter', 'duration': '1.2s', 'delay': '1s'}">
-                            For Women’s</h2>
-                        <h3 class="font-weight-normal mb-1  " data-animation-options="{
-                            'name': 'fadeInUpShorter',
-                            'duration': '1.2s',
-                            'delay': '1s'
-                        }">
+                            From your Fav Stores</h3>
+                        <h3 class="font-weight-normal mb-1  ">
                             <strong>Up to 30% Off</strong> on all Products
                         </h3>
-                        <p class="  ls-m text-dark font-primary mb-6"
-                            data-animation-options="{'name': 'fadeInUpShorter', 'duration': '1.2s', 'delay': '1s'}">
-                            Get Free Shipping on all orders over $99.00</p>
-                        <a href="#" class="btn btn-outline btn-dark  "
-                            data-animation-options="{'name': 'fadeInUpShorter', 'duration': '1s', 'delay': '1.8s'}">Shop
+                        <p class=" ls-m text-dark font-primary mb-6">
+                            Receives Payments from Ghana, Nigeria, Kenya and UK.</p>
+                        <a href="#" class="btn btn-outline btn-dark">Shop
                             Now</a>
                     </div>
                 </div>
