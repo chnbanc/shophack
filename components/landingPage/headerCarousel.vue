@@ -5,9 +5,6 @@
             <div class="banner banner-fixed intro-slide1" style="background-color: #dddee0;">
                 <figure>
                     <div class="slide-effect">
-                        <img src="../../assets/images/demos/demo1/slides/Slider1_women.png"
-                            class="  intro-slide1-img"
-                            alt="intro-banner" width="1180" height="630" />
                         <div class="float-svg-container float-svg-1  ">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                 xmlns:xlink="http://www.w3.org/1999/xlink" id="Layer_1" x="0px" y="0px"
@@ -30,27 +27,28 @@
                                 </path>
                             </svg>
                         </div>
+                        <img src="../../assets/images/demos/demo1/slides/Slider1_women.png"
+                            class="  intro-slide1-img"
+                            alt="intro-banner" width="1180" height="630" />
                     </div>
                 </figure>
                 <div class="container">
 
                     <div class="banner-content y-50">
                         <h4 class="banner-subtitle text-uppercase font-weight-bold ls-l mb-2">
-                            <span class="d-inline-block  "
-                                data-animation-options="{'name': 'fadeInRightShorter', 'duration': '1s', 'delay': '.2s'}">Buy
+                            <span class="d-inline-block">Sell
                                 Quick, and</span>
-                            <span class="d-inline-block label-star bg-primary text-white">Affordable</span>
+                            <span class="d-inline-block label-star bg-primary text-white">Fast</span>
                         </h4>
-                        <h3 class="banner-title text-uppercase font-weight-bold text-white lh-1 ls-l  "
-                            data-animation-options="{'name': 'fadeInUpShorter', 'duration': '1.2s', 'delay': '1s'}">
-                            From your Fav Stores</h3>
+                        <h3 class="banner-title text-uppercase font-weight-bold text-white lh-1 ls-l  ">
+                            To everyone</h3>
                         <h3 class="font-weight-normal mb-1  ">
-                            <strong>Up to 30% Off</strong> on all Products
+                            Get assigned a <strong>dispatch rider</strong> on registration
                         </h3>
                         <p class=" ls-m text-dark font-primary mb-6">
                             Receives Payments from Ghana, Nigeria, Kenya and UK.</p>
-                        <a href="#" class="btn btn-outline btn-dark">Shop
-                            Now</a>
+                        <a href="#" class="btn btn-outline btn-dark">Register
+                            Shop</a>
                     </div>
                 </div>
             </div>
@@ -105,12 +103,44 @@
         </div>
     </section>
 
+    
+
   </div>
 </template>
 
 <script>
+import {
+  CModal,
+  CModalOverlay,
+  CModalContent,
+  CModalHeader,
+  CModalFooter,
+  CModalBody,
+  CModalCloseButton,
+} from "@chakra-ui/vue";
 export default {
-
+    components: {
+        CModal,
+        CModalOverlay,
+        CModalContent,
+        CModalHeader,
+        CModalFooter,
+        CModalBody,
+        CModalCloseButton
+    },
+    data () {
+        return {
+            isOpen: false
+        }
+    },
+    methods: {
+        open() {
+            this.isOpen = true
+        },
+        close() {
+            this.isOpen = false
+        }
+    }
 }
 </script>
 

@@ -48,7 +48,17 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
+    '@chakra-ui/nuxt',
+    '@nuxtjs/emotion'
   ],
+
+  chakra: {
+    extendTheme: {
+      colors: {
+        brand: { /* ... */ }
+      }
+    }
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
