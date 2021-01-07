@@ -10,7 +10,10 @@
   },
   "dependencies": {
     "@chakra-ui/nuxt": "^0.2.3",
+    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/axios": "^5.12.5",
     "@nuxtjs/emotion": "^0.1.0",
+    "@nuxtjs/toast": "^3.3.1",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6"
   },

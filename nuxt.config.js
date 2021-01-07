@@ -1,3 +1,4 @@
+import axios from 'axios'
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
@@ -49,8 +50,17 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     '@chakra-ui/nuxt',
-    '@nuxtjs/emotion'
+    '@nuxtjs/emotion',
+    '@nuxtjs/axios',
+    '@nuxtjs/auth',
+    '@nuxtjs/toast'
   ],
+
+  toast: {
+    position: 'top-right',
+    duration: 2000
+  },
+
 
   chakra: {
     extendTheme: {
@@ -62,5 +72,34 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+  },
+
+  loading: {
+    name: 'chasing-dots',
+    color: '#ff5638',
+    background: 'white',
+    height: '4px'
+ },
+
+
+  axios: {
+    baseURL: 'https://jumga-flutterwave-solution-api.herokuapp.com/api'
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/auth/login', method: 'post', propertyName: 'token' },
+          logout: { url: '/auth/logout', method: 'get' },
+          user: { url: '/user', method: 'get', propertyName: false}
+        },
+        // tokenRequired: true,
+        // tokenType: 'bearer',
+        // globalToken: true,
+        // autoFetchUser: true
+      }
+    }
   }
+   
 }

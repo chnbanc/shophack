@@ -11,7 +11,8 @@
         <!-- End PageHeader -->
         <div class="page-content mt-10 mb-10">
             <div class="container pt-1">
-                <h5>Attached Dispatch Rider : Ezekiel Olawale </h5>
+                <h5>Attached Dispatch Rider</h5>
+                <h6>Name: Ezekiel Olawale Contact: 08145485678</h6>
                 <div class="tab tab-vertical">
                     <ul class="nav nav-tabs mb-4" role="tablist">
                         <li class="nav-item">
