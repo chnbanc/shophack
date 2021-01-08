@@ -2,17 +2,16 @@
   <div class="account">
         <div class="page-header dashHead"
             style="background-color: #3C63A4;">
-            <h1 class="page-title">My Account</h1>
+            <h1 class="page-title">{{this.$auth.user.data.store.name}} </h1>
             <ul class="breadcrumb">
-                <li><a href="demo1.html"><i class="fas fa-home"></i></a></li>
-                <li>Seller Dashboard</li>
+                <li><h5>{{this.$auth.user.data.store.description}} </h5></li>
             </ul>
         </div>
         <!-- End PageHeader -->
         <div class="page-content mt-10 mb-10">
             <div class="container pt-1">
-                <h5>Attached Dispatch Rider</h5>
-                <h6>Name: Ezekiel Olawale Contact: 08145485678</h6>
+                <h5>Hello, {{this.$auth.user.data.name}} </h5>
+                <h5>Account Details: {{this.$auth.user.data.account_number}}  </h5>
                 <div class="tab tab-vertical">
                     <ul class="nav nav-tabs mb-4" role="tablist">
                         <li class="nav-item">
@@ -24,6 +23,12 @@
                         <li class="nav-item">
                             <a href="#">Logout</a>
                         </li>
+                        <div class="my-33">
+                            <h5>Attached Dispatch Rider:</h5>
+                            <h6>Name: {{this.$auth.user.data.store.rider.account_name}} </h6>
+                            <h6>Contact: {{this.$auth.user.data.store.rider.phone_number}} </h6>
+                            <h6>Email: {{this.$auth.user.data.store.rider.email}} </h6>
+                        </div>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="dashboard">

@@ -253,8 +253,8 @@ export default {
                 name_of_store: 'Tosins Store'
             },
             info : {
-                email: '',
-                password: ''
+                email: 'tofmatt@gmail.com',
+                password: 'Ogunfowote400'
             },
             loading: false,
             errors: '',
@@ -354,6 +354,7 @@ export default {
                 data: loginInfo
             })
                 this.$router.push('/dashboard')
+                this.close()
                 return response;
                 this.$toast.success('You are logged in')
             } catch (error){
