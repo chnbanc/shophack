@@ -67,27 +67,11 @@
                         <c-box>
                             <c-tabs variant="enclosed-colored" is-fitted>
                                 <c-tab-list>
-                                    <c-tab>Login</c-tab>
                                     <c-tab>Register</c-tab>
+                                    <c-tab>Login</c-tab>
                                 </c-tab-list>
 
                                 <c-tab-panels>
-                                    <c-tab-panel>
-                                        <div class="tab-pane active" id="signin">
-                                            <form action="#">
-                                                <div class="form-group">
-                                                    <label for="singin-email" class="mb-3">Username or email address:</label>
-                                                    <input type="text" class="form-control" id="singin-email" name="singin-email" required />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="singin-password" class="mb-3">Password:</label>
-                                                    <input type="password" class="form-control" id="singin-password" name="singin-password"
-                                                        required />
-                                                </div>
-                                                <button class="btn btn-primary btn-block mb-3" type="submit">Sign in</button>
-                                            </form>
-                                        </div>
-                                    </c-tab-panel>
                                     <c-tab-panel>
                                         <div class="tab-pane active" id="register">
                                             <h6>Approval of shop costs $20. You would be assigned a dispatch rider on confirmation of payment.</h6>
@@ -159,6 +143,25 @@
                                                     <i class="fas fa-spin fa-spinner" v-if="loading"></i>
                                                         {{ loading ? '' : 'SIGN UP' }}
                                                 </v-btn>
+                                            </form>
+                                        </div>
+                                    </c-tab-panel>
+                                    <c-tab-panel>
+                                        <div v-if="this.$auth.user" class="my-33">
+                                            <h4>You are logged in, Please held over to your <nuxt-link to="/dashboard"><span class="blue">Dashboard</span></nuxt-link></h4>
+                                        </div>
+                                        <div class="tab-pane active" id="signin" v-else>
+                                            <form action="#">
+                                                <div class="form-group">
+                                                    <label for="singin-email" class="mb-3">Username or email address:</label>
+                                                    <input type="text" class="form-control" id="singin-email" name="singin-email" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="singin-password" class="mb-3">Password:</label>
+                                                    <input type="password" class="form-control" id="singin-password" name="singin-password"
+                                                        required />
+                                                </div>
+                                                <button class="btn btn-primary btn-block mb-3" type="submit">Sign in</button>
                                             </form>
                                         </div>
                                     </c-tab-panel>
@@ -344,5 +347,11 @@ export default {
 <style>
 .form-group select {
     margin-bottom: 20px;
+}
+.blue{
+    color: blue;
+}
+.my-33{
+    margin-top: 3rem;
 }
 </style>

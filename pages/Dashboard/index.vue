@@ -145,8 +145,8 @@
 </template>
 
 <script>
-export default {
-
+export default { 
+middleware: ['dashboard']
 }
 </script>
 
