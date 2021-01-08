@@ -153,15 +153,21 @@
                                         <div class="tab-pane active" id="signin" v-else>
                                             <form action="#">
                                                 <div class="form-group">
-                                                    <label for="singin-email" class="mb-3">Username or email address:</label>
-                                                    <input type="text" class="form-control" id="singin-email" name="singin-email" required />
+                                                    <p v-if="errors">{{errors}}</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="singin-email" class="mb-3">Email Address:</label>
+                                                    <input type="text" class="form-control" v-model="info.email" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="singin-password" class="mb-3">Password:</label>
-                                                    <input type="password" class="form-control" id="singin-password" name="singin-password"
+                                                    <input type="password" class="form-control" v-model="info.password"
                                                         required />
                                                 </div>
-                                                <button class="btn btn-primary btn-block mb-3" type="submit">Sign in</button>
+                                                <v-btn @click="loginUser(info)" class="btn btn-primary btn-block mb-3">
+                                                    <i class="fas fa-spin fa-spinner" v-if="loading"></i>
+                                                    {{ loading ? '' : 'LOGIN' }}
+                                                </v-btn>
                                             </form>
                                         </div>
                                     </c-tab-panel>
@@ -245,6 +251,10 @@ export default {
                 transaction_id: '',
                 location: 'Bamidele',
                 name_of_store: 'Tosins Store'
+            },
+            info : {
+                email: '',
+                password: ''
             },
             loading: false,
             errors: '',
@@ -334,6 +344,22 @@ export default {
                 this.banks = this.ghana 
             }else {
                 
+            }
+        },
+        async loginUser(loginInfo){
+            this.errors = ''
+            try {
+                this.loading = true;
+                const response = await this.$auth.loginWith('local', {
+                data: loginInfo
+            })
+                this.$router.push('/dashboard')
+                return response;
+                this.$toast.success('You are logged in')
+            } catch (error){
+                this.errors = error.response.data.message
+                console.log(error);
+                this.loading = false;
             }
         }
     },
