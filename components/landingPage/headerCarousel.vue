@@ -90,19 +90,75 @@
                                     </c-tab-panel>
                                     <c-tab-panel>
                                         <div class="tab-pane active" id="register">
-                                            <h6>Approval of shop costs $20</h6>
+                                            <h6>Approval of shop costs $20. You would be assigned a dispatch rider on confirmation of payment.</h6>
                                             <form action="#">
                                                 <div class="form-group">
+                                                    <label for="singin-email">Your Full Name:</label>
+                                                    <input type="text" class="form-control"
+                                                        required v-model="addUserInfo.name"/>
+                                                </div>
+                                                <div class="form-group">
                                                     <label for="singin-email">Your email address:</label>
-                                                    <input type="email" class="form-control" id="register-email" name="register-email"
-                                                        required />
+                                                    <input type="email" class="form-control" 
+                                                        required v-model="addUserInfo.email"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="singin-email">Your Phone Number:</label>
+                                                    <input type="tel" class="form-control"
+                                                        required v-model="addUserInfo.phone_number"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="singin-email">Your Store Name:</label>
+                                                    <input type="text" class="form-control" 
+                                                        required v-model="addUserInfo.name_of_store"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="singin-email">Your Store Description:</label>
+                                                    <input type="text" class="form-control" name="register-email"
+                                                        required v-model="addUserInfo.description"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="singin-email">Your Store Address:</label>
+                                                    <input type="text" class="form-control" name="register-email"
+                                                        required v-model="addUserInfo.location"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="singin-email">Country of Residence</label>
+                                                    <select v-model="addUserInfo.country" class="form-control" @change="attachBanks()">
+                                                        <option disabled value="">Please select country</option>
+                                                        <option v-for="country in countries" :value="country.name" :key="country.id">{{country.name}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="singin-email">Bank Name</label>
+                                                    <select v-model="addUserInfo.account_bank_code" class="form-control">
+                                                        <option disabled value="">Please select bank</option>
+                                                        <option v-for="bank in banks" :value="bank.code" :key="bank.id">{{bank.name}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="singin-email">Account Number</label>
+                                                    <input type="number" class="form-control" name="register-email"
+                                                        required v-model="addUserInfo.account_number"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="singin-email">Account Name</label>
+                                                    <input type="text" class="form-control" name="register-email"
+                                                        required v-model="addUserInfo.account_name"/>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="singin-password">Password:</label>
-                                                    <input type="password" class="form-control" id="register-password" name="register-password"
-                                                        required />
+                                                    <input type="password" class="form-control" name="register-password"
+                                                        required v-model="addUserInfo.password"/>
                                                 </div>
-                                                <button class="btn btn-primary btn-block" type="submit">Sign up</button>
+                                                <div class="form-group">
+                                                    <label for="singin-password">Upload Store Cover Image:</label>
+                                                    <input type="file" accept="image/png, image/jpeg" v-on:change="onChange" class="form-control">
+                                                </div>
+                                                <v-btn class="btn btn-primary btn-block" type="submit" @click="makePayment()">
+                                                    <i class="fas fa-spin fa-spinner" v-if="loading"></i>
+                                                        {{ loading ? '' : 'SIGN UP' }}
+                                                </v-btn>
                                             </form>
                                         </div>
                                     </c-tab-panel>
@@ -141,6 +197,10 @@ import {
   CTabPanels,
   CTab,
   CTabPanel } from '@chakra-ui/vue'
+import allcountries from "../../assets/countries.json"
+import nigeriaBanks from "../../assets/nigeria.json"
+import ghanaBanks from "../../assets/ghana.json"
+import kenyaBanks from "../../assets/kenya.json"
 export default {
   name: 'DefaultLayout',
   components: {
@@ -162,8 +222,32 @@ export default {
   },
     data () {
         return {
-            isOpen: false
-        }
+            countries: allcountries.data,
+            nigeria: nigeriaBanks.data,
+            ghana: ghanaBanks.data,
+            kenya: kenyaBanks.data,
+            isOpen: false,
+            banks: [],
+            addUserInfo: {
+                name: 'Tosin ',
+                email: 'tofmatt@gmail.com',
+                description: 'asass',
+                role: 'seller',
+                password: 'Ogunfowote400',
+                account_number: '3028398370',
+                phone_number: '08145485678',
+                account_name: 'Tosin Ogunfowote',
+                account_bank_code: '',
+                country: '',
+                transaction_id: '',
+                location: 'Bamidele',
+                name_of_store: 'Tosins Store'
+            },
+            loading: false,
+            errors: '',
+            image: null
+        };
+        
     },
     methods: {
         open() {
@@ -171,11 +255,94 @@ export default {
         },
         close() {
             this.isOpen = false
+        },
+        onChange(event) {
+            this.image = event.target.files[0]
+        },
+        async register(data){
+            console.log(data.transaction_id);
+            this.addUserInfo.transaction_id = data.transaction_id
+            let formData = new FormData()
+            formData.append('image', this.image, this.image.name)
+            formData.append('name', this.addUserInfo.name)
+            formData.append('email', this.addUserInfo.email)
+            formData.append('description', this.addUserInfo.description)
+            formData.append('password', this.addUserInfo.password)
+            formData.append('account_number', this.addUserInfo.account_number)
+            formData.append('phone_number', this.addUserInfo.phone_number)
+            formData.append('role', this.addUserInfo.role)
+            formData.append('account_name', this.addUserInfo.account_name)
+            formData.append('account_bank_code', this.addUserInfo.account_bank_code)
+            formData.append('country', this.addUserInfo.country)
+            formData.append('transaction_id', this.addUserInfo.transaction_id)
+            formData.append('location', this.addUserInfo.location)
+            formData.append('name_of_store', this.addUserInfo.name_of_store)
+            try {
+                this.loading = true;
+                // this.$toast.show('Signing you up')
+                const response = await this.$axios.post('/auth/register', formData, {
+                    headers: {
+                    'Content-Type': 'multipart/form-data'
+                    }
+                })
+                await this.$auth.loginWith('local', {
+                data: this.addUserInfo
+            })
+            // this.$toast.success('You have successfully registered')
+            this.$router.push('/dashboard')
+            return response;
+            // this.$toast.success('Welcome to your dashboard')
+            } catch(error) {
+                this.loading = false;
+                this.errors = error.response.data.message
+                // this.$toast.info('There was a problem signing up, check your credentials');
+            }
+        },
+        makePayment() {
+            FlutterwaveCheckout({
+                public_key: "FLWPUBK_TEST-ffd61da84604886eeb5e71b9a2ac5732-X",
+                tx_ref: "hooli-tx-1920bbtyt",
+                amount: 20,
+                currency: "USD",
+                country: "NG",
+                payment_options: "card,mobilemoney,ussd,mobilemoneyghana,barter,",
+                customer: {
+                    email: this.addUserInfo.email,
+                    phone_number: this.addUserInfo.phone,
+                    name: this.addUserInfo.name,
+                },
+                callback: data => { // specified callback function
+                    // this.$toast.success('Registering your Store.')
+                    const that = this
+                    that.register(data)
+                },
+                customizations: {
+                    title: "My Jumga store",
+                    description: "Payment for Approval of store",
+                },
+            });
+        },
+        attachBanks(){
+            if(this.addUserInfo.country === 'Nigeria'){
+                this.banks = this.nigeria 
+            }else if (this.addUserInfo.country === 'Kenya') {
+                this.banks = this.kenya
+            }else if (this.addUserInfo.country === 'Ghana') {
+                this.banks = this.ghana 
+            }else {
+                
+            }
         }
+    },
+    computed: {
+        
     }
+
 }
 </script>
 
 <style>
-
+.form-group select {
+    margin-bottom: 20px;
+}
 </style>

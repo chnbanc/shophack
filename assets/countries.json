@@ -1,0 +1,17 @@
+{
+    "data": [
+      {
+        "name": "Nigeria",
+        "id": 1
+      },
+      {
+        "name": "Ghana",
+        "id": 3
+      },
+      {
+        "name": "Kenya",
+        "id": 2
+      }
+      
+    ]
+  }

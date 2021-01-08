@@ -217,54 +217,29 @@
                 is-centered
                 >
                 <c-modal-content ref="content">
-                    <c-modal-header><h3>Register as a Seller</h3></c-modal-header>
+                    <c-modal-header><h3>Login to Dashboard</h3></c-modal-header>
 
                     <c-modal-body>
-                        <c-box>
-                            <c-tabs variant="enclosed-colored" is-fitted>
-                                <c-tab-list>
-                                    <c-tab>Login</c-tab>
-                                    <c-tab>Register</c-tab>
-                                </c-tab-list>
-
-                                <c-tab-panels>
-                                    <c-tab-panel>
-                                        <div class="tab-pane active" id="signin">
-                                            <form action="#">
-                                                <div class="form-group">
-                                                    <label for="singin-email" class="mb-3">Username or email address:</label>
-                                                    <input type="text" class="form-control" id="singin-email" name="singin-email" required />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="singin-password" class="mb-3">Password:</label>
-                                                    <input type="password" class="form-control" id="singin-password" name="singin-password"
-                                                        required />
-                                                </div>
-                                                <button class="btn btn-primary btn-block mb-3" type="submit">Sign in</button>
-                                            </form>
-                                        </div>
-                                    </c-tab-panel>
-                                    <c-tab-panel>
-                                        <div class="tab-pane active" id="register">
-                                            <h6>Approval of shop costs $20</h6>
-                                            <form action="#">
-                                                <div class="form-group">
-                                                    <label for="singin-email">Your email address:</label>
-                                                    <input type="email" class="form-control" id="register-email" name="register-email"
-                                                        required />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="singin-password">Password:</label>
-                                                    <input type="password" class="form-control" id="register-password" name="register-password"
-                                                        required />
-                                                </div>
-                                                <button class="btn btn-primary btn-block" type="submit">Sign up</button>
-                                            </form>
-                                        </div>
-                                    </c-tab-panel>
-                                </c-tab-panels>
-                            </c-tabs>
-                        </c-box>
+                        <div class="tab-pane active" id="signin">
+                            <form action="#">
+                                <div class="form-group">
+                                    <p v-if="errors">{{errors}}</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="singin-email" class="mb-3">Email Address:</label>
+                                    <input type="text" class="form-control" v-model="info.email" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="singin-password" class="mb-3">Password:</label>
+                                    <input type="password" class="form-control" v-model="info.password"
+                                        required />
+                                </div>
+                                 <v-btn @click="loginUser(info)" class="btn btn-primary btn-block mb-3">
+                                    <i class="fas fa-spin fa-spinner" v-if="loading"></i>
+                                    {{ loading ? '' : 'LOGIN' }}
+                                </v-btn>
+                            </form>
+                        </div>
 
                         
                     </c-modal-body>  
@@ -385,6 +360,11 @@ import {
 
 export default {
   name: 'DefaultLayout',
+  head: {
+        script: [
+            { src: "https://checkout.flutterwave.com/v3.js", body: true }
+        ],
+    },
   components: {
     CThemeProvider,
     CReset,
@@ -404,7 +384,13 @@ export default {
   },
     data () {
         return {
-            isOpen: false
+            isOpen: false,
+            loading: false,
+            errors: '',
+            info : {
+                email: '',
+                password: ''
+            }
         }
     },
     methods: {
@@ -413,6 +399,22 @@ export default {
         },
         close() {
             this.isOpen = false
+        },
+        async loginUser(loginInfo){
+            this.errors = ''
+            try {
+                this.loading = true;
+                const response = await this.$auth.loginWith('local', {
+                data: loginInfo
+            })
+                this.$router.push('/dashboard')
+                return response;
+                this.$toast.success('You are logged in')
+            } catch (error){
+                this.errors = error.response.data.message
+                console.log(error);
+                this.loading = false;
+            }
         }
     }
 }
@@ -426,6 +428,8 @@ export default {
 .css-tsegqq-Yn {
     max-width: 80rem !important;
     padding: 20px;
+    max-height: 80vh;
+    overflow: auto;
 }
 .css-6baq7i-Yn{
     font-size: 17px;

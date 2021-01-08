@@ -58,7 +58,17 @@ export default {
 
   toast: {
     position: 'top-right',
-    duration: 2000
+    duration: 3000,
+    keepOnHover: true,
+    register: [ // Register custom toasts
+      {
+        name: 'my-error',
+        message: 'Oops...Something went wrong',
+        options: {
+          type: 'error'
+        }
+      },
+    ]
   },
 
 
