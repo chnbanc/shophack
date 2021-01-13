@@ -1,29 +1,8 @@
 <template>
   <div>
-    <section class="product-wrapper container mt-10 pt-3 pb-8" data-animation-options="{
-                    'delay': '.3s'
-                }">
+    <section class="product-wrapper container mt-10 pt-3 pb-8">
         <h2 class="title">Best Selling Products</h2>
-        <div class="owl-theme row owl-nav-full cols-2 cols-md-3 cols-lg-4" data-owl-options="{
-            'items': 5,
-            'nav': false,
-            'loop': false,
-            'dots': true,
-            'margin': 20,
-            'responsive': {
-                '0': {
-                    'items': 2
-                },
-                '768': {
-                    'items': 3
-                },
-                '992': {
-                    'items': 4,
-                    'dots': false,
-                    'nav': true
-                }
-            }
-        }">
+        <div class="owl-theme row owl-nav-full cols-2 cols-md-3 cols-lg-4" >
             <div class="product">
                 <figure class="product-media">
                     <a href="product.html">
@@ -407,8 +386,17 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
 
+    methods: {
+        ...mapActions({
+        getProducts: 'getProducts'
+        })
+    },
+    mounted() {
+        this.getProducts();
+    }
 }
 </script>
 

@@ -37,109 +37,37 @@
                             </h3>
                             <form action="#" class="form">
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>First Name *</label>
+                                    <div class="col-sm-12">
+                                        <label>Product Name </label>
                                         <input type="text" class="form-control" name="first_name" required="">
                                     </div>
-                                    <div class="col-sm-6">
-                                        <label>Last Name *</label>
-                                        <input type="text" class="form-control" name="last_name" required="">
-                                    </div>
                                 </div>
 
-                                <label>Display Name *</label>
+                                <label>Product Description</label>
                                 <input type="text" class="form-control mb-0" name="display_name" required="">
-                                <small class="d-block form-text mb-4">This will be how your name will be displayed
-                                    in the account section and in reviews</small>
+                                <small class="d-block form-text mb-4">This will be your product would be described, make it as accurate and precise as possible</small>
 
-                                <label>Email address *</label>
-                                <input type="email" class="form-control" name="email" required="">
-
-                                <label>Current password (leave blank to leave unchanged)</label>
-                                <input type="password" class="form-control" name="current_password">
-
-                                <label>New password (leave blank to leave unchanged)</label>
-                                <input type="password" class="form-control" name="new_password">
-
-                                <label>Confirm new password</label>
-                                <input type="password" class="form-control" name="confirm_password">
-
-                                <button type="submit" class="btn btn-primary btn-reveal-right">SAVE CHANGES <i
-                                        class="d-icon-arrow-right"></i></button>
-                            </form>
-                        </div>
-                        <div class="tab-pane" id="orders">
-                            <p class=" b-2">No order has been made yet.</p>
-                            <a href="#" class="btn btn-primary">Go Shop</a>
-                        </div>
-                        <div class="tab-pane" id="downloads">
-                            <p class="mb-2">No downloads available yet.</p>
-                            <a href="#" class="btn btn-primary">Go Shop</a>
-                        </div>
-                        <div class="tab-pane" id="address">
-                            <p class="mb-2">The following addresses will be used on the checkout page by default.
-                            </p>
-                            <div class="row">
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card card-address">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Billing Address</h5>
-                                            <p>User Name<br>
-                                                User Company<br>
-                                                John str<br>
-                                                New York, NY 10001<br>
-                                                1-234-987-6543<br>
-                                                yourmail@mail.com<br>
-                                            </p>
-                                            <a href="#" class="btn btn-link btn-secondary btn-underline">Edit <i
-                                                    class="far fa-edit"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="card card-address">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Shipping Address</h5>
-                                            <p>You have not set up this type of address yet.</p>
-                                            <a href="#" class="btn btn-link btn-secondary btn-underline">Edit <i
-                                                    class="far fa-edit"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="account">
-                            <form action="#" class="form">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <label>First Name *</label>
-                                        <input type="text" class="form-control" name="first_name" required="">
+                                        <label>Set Price </label>
+                                        <input type="number" class="form-control" name="first_name" required="">
                                     </div>
                                     <div class="col-sm-6">
-                                        <label>Last Name *</label>
-                                        <input type="text" class="form-control" name="last_name" required="">
+                                        <label>Number of Stock </label>
+                                        <input type="number" class="form-control" name="first_name" required="">
                                     </div>
                                 </div>
 
-                                <label>Display Name *</label>
-                                <input type="text" class="form-control mb-0" name="display_name" required="">
-                                <small class="d-block form-text mb-4">This will be how your name will be displayed
-                                    in the account section and in reviews</small>
+                                <label>Delivery Fee ({{this.$auth.user.data.country}})</label>
+                                <input type="number" class="form-control" name="current_password">
 
-                                <label>Email address *</label>
-                                <input type="email" class="form-control" name="email" required="">
+                                <label for="singin-password">Upload Store Cover Image:</label>
+                                <input type="file" accept="image/png, image/jpeg" v-on:change="onChange" multiple class="form-control">
 
-                                <label>Current password (leave blank to leave unchanged)</label>
-                                <input type="password" class="form-control" name="current_password">
-
-                                <label>New password (leave blank to leave unchanged)</label>
-                                <input type="password" class="form-control" name="new_password">
-
-                                <label>Confirm new password</label>
-                                <input type="password" class="form-control" name="confirm_password">
-
-                                <button type="submit" class="btn btn-primary btn-reveal-right">UPLOAD PRODUCT <i
-                                        class="d-icon-arrow-right"></i></button>
+                                <v-btn class="btn btn-primary btn-block" type="submit"  @click="addProduct(addProductInfo)">
+                                    <i class="fas fa-spin fa-spinner" v-if="loading"></i>
+                                        {{ loading ? '' : 'ADD PRODUCTS' }}
+                                </v-btn>
                             </form>
                         </div>
                     </div>
@@ -150,8 +78,52 @@
 </template>
 
 <script>
-export default { 
-middleware: ['dashboard']
+export default {
+    middleware: ['dashboard']
+    ,
+    data () {
+        return {
+            addProductInfo: {
+                name: '',
+                description: '',
+                price: '',
+                number_of_stock: '',
+                store_id: '',
+                delivery_fee: '',
+            },
+        }
+        image: null
+    },
+    methods: {
+        onChange(event) {
+            this.image = event.target.files
+        },
+        async addProduct(Info){
+            let formData = new FormData()
+            for (const i of Object.keys(this.image)){
+                formData.append('image[' + i + ']', this.image[i])
+            }
+            formData.append('name', this.addProductInfo.name)
+            formData.append('description', this.addProductInfo.description)
+            formData.append('price', this.addProductInfo.price)
+            formData.append('number_of_stock', this.addProductInfo.number_of_stock)
+            formData.append('store_id', this.addProductInfo.store_id)
+            formData.append('delivery_fee', this.addProductInfo.delivery_fee)
+            try {
+                this.loading = true;
+                const response = await this.$axios.post('https://jumga-flutterwave-solution-api.herokuapp.com/api/products', formData, {
+                    headers: {
+                    'Content-Type': 'multipart/form-data'
+                    }
+                })
+                return response
+                // this.$router.push('/landlord')
+            } catch(error){
+                this.loading = false;
+                this.errors = error.response.data.message
+            }
+        },
+    }
 }
 </script>
 
