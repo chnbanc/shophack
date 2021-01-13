@@ -39,27 +39,27 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <label>Product Name </label>
-                                        <input type="text" class="form-control" name="first_name" required="">
+                                        <input type="text" class="form-control" name="first_name" required="" v-model="addProductInfo.name">
                                     </div>
                                 </div>
 
                                 <label>Product Description</label>
-                                <input type="text" class="form-control mb-0" name="display_name" required="">
+                                <input type="text" class="form-control mb-0" name="display_name" required="" v-model="addProductInfo.description">
                                 <small class="d-block form-text mb-4">This will be your product would be described, make it as accurate and precise as possible</small>
 
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Set Price </label>
-                                        <input type="number" class="form-control" name="first_name" required="">
+                                        <input type="number" class="form-control" name="first_name" required="" v-model="addProductInfo.price">
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Number of Stock </label>
-                                        <input type="number" class="form-control" name="first_name" required="">
+                                        <input type="number" class="form-control" name="first_name" required="" v-model="addProductInfo.number_of_stock">
                                     </div>
                                 </div>
 
                                 <label>Delivery Fee ({{this.$auth.user.data.country}})</label>
-                                <input type="number" class="form-control" name="current_password">
+                                <input type="number" class="form-control" name="current_password" v-model="addProductInfo.delivery_fee">
 
                                 <label for="singin-password">Upload Store Cover Image:</label>
                                 <input type="file" accept="image/png, image/jpeg" v-on:change="onChange" multiple class="form-control">
@@ -88,7 +88,7 @@ export default {
                 description: '',
                 price: '',
                 number_of_stock: '',
-                store_id: '',
+                store_id: this.$auth.user.data.store.id,
                 delivery_fee: '',
             },
         }
