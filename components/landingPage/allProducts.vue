@@ -5,7 +5,7 @@
         <div class="owl-theme row owl-nav-full cols-2 cols-md-3 cols-lg-4" >
             <div class="product" v-for="product in products" :key="product.public_reference_id">
                 <figure class="product-media">
-                    <nuxt-link to="/">
+                    <nuxt-link :to="`/${product.id}`">
                         <img :src='product.images[0].image' alt="Blue Pinafore Denim Dress"
                             width="280" height="315">
                     </nuxt-link>
@@ -23,7 +23,7 @@
                         categories
                     </div>
                     <h2 class="product-name">
-                        <nuxt-link to="/">{{product.name}}</nuxt-link>
+                        <nuxt-link :to="`/${product.id}`">{{product.name}}</nuxt-link>
                     </h2>
                     <div class="product-price">
                         <ins class="new-price">$ {{product.price}}</ins>

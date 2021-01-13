@@ -7,7 +7,7 @@
                         <div class="product-gallery product-gallery-sticky">
                             <div class="product-single-carousel owl-carousel owl-theme owl-nav-inner row cols-1">
                                 <figure class="product-image">
-                                    <img src="@/assets/images/product/product-1-580x580.jpg" alt="Women's Brown Leather Backpacks" width="800" height="900">
+                                    <img :src='product.images[0].image' alt="Women's Brown Leather Backpacks" width="800" height="900">
                                 </figure>
                             </div>
                         </div>
@@ -23,17 +23,13 @@
 
                             </div>
 
-                            <h1 class="product-name">Women's Brown Leather Backpacks</h1>
+                            <h1 class="product-name">{{product.name}}</h1>
                             <div class="product-meta">
-                                SKU: <span class="product-sku">12345670</span>
-                                BRAND: <span class="product-brand">The Northland</span>
+                                Stock Available: <span class="product-sku">{{product.number_of_stock}}</span>
                             </div>
-                            <div class="product-price">$139.00</div>
+                            <div class="product-price">${{product.price}}</div>
 
-                            <p class="product-short-desc">Sed egestas, ante et vulputate volutpat, eros pede semper
-                                est, vitae luctus metus libero eu augue. Morbi purus liberpuro ate vol faucibus
-                                adipiscing. Sed lectus te et vulputate aucibus adipiscing. Sed lectus. us
-                                adipiscing. Sed lectus. </p>
+                            <p class="product-short-desc">{{product.description}}</p>
                             <div class="product-form product-color">
                                 <label>Color:</label>
                                 <div class="product-variations">
@@ -86,37 +82,16 @@
                             <div class="tab tab-nav-simple product-tabs">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item">
-                                        <a class="nav-link active" href="#product-tab-description">Description</a>
+                                        <a class="nav-link active" href="#">Description</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#product-tab-shipping-returns">Shipping &amp;
+                                        <a class="nav-link" href="#">Shipping &amp;
                                             Returns</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active in" id="product-tab-description">
-                                        <p>Donec tellus massa, tristique sit amet condim vel, facilisis quis sapien.
-                                            Praesent id engmin rae sitf amet odio vulputate eleifend in in tortor.
-                                            Sellus massa, tristique it amet cond coim vel, faci lisis rae Facilisis
-                                            quis sapien. Praesent id enim sit amet odio vulputatefi.</p>
-                                        <p>Praesent id enim sit amet odio vulputate eleifend in in tortor. Sellus
-                                            massa, tristique sitiismonec tellus massa, tristique sit amet condim
-                                            vel, facilisis quimequistiqutiqu amet condim vel, facilisis Facilisis
-                                            quis sapien. Praesent id enim sit amet odio vulputate odio vulputate
-                                            eleifend in in tortor. Sellus massa, tristique sitiismonec tellus massa,
-                                            tristique sit ametcdimel,facilisis quimequistiqutiqu amet condim vel,
-                                            facilisis Facilisis quis sapien. Praesent id enim sit amet odio
-                                            vulputate</p>
-                                    </div>
-                                    <div class="tab-pane " id="product-tab-shipping-returns">
-                                        <h6 class="mb-2">Free Shipping</h6>
-                                        <p class="mb-0">We deliver to over 100 countries around the world. For full
-                                            details of the delivery options we offer, please view our <a href="#"
-                                                class="text-primary">Delivery information</a><br />We hope you’ll
-                                            love every purchase, but if you ever need to return an item you can do
-                                            so within a month of receipt. For full details of how to make a return,
-                                            please view our <br /><a href="#" class="text-primary">Returns
-                                                information</a></p>
+                                        <p>{{product.description}}.</p>
                                     </div>
                                 </div>
                             </div>
@@ -128,12 +103,14 @@
                 
             </div>
         </div>
+
   </div>
 </template>
 
 <script>
 import allProducts from '@/components/landingPage/allProducts'
 export default {
+    props: ['product'],
     components: {
         allProducts
     }

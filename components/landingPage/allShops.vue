@@ -4,19 +4,19 @@
                     'delay': '.3s'
                 }">
         <div class="container pt-3">
-            <h2 class="title">Browse Our Shops Available</h2>
+            <h2 class="title">Browse Our Stores Available</h2>
             <div class="row">
                 <div class="col-md-3 col-6 mb-4" v-for="shop in shops" :key="shop.public_reference_id">
                     <div
                         class="category category-default category-default-1 category-absolute overlay-zoom">
-                        <a href="#">
+                        <nuxt-link :to="`/stores/${shop.id}`">
                             <figure class="category-media">
                                 <img :src='shop.image' alt="category"
                                     width="280" height="280" />
                             </figure>
-                        </a>
+                        </nuxt-link>
                         <div class="category-content">
-                            <h4 class="category-name"><nuxt-link to="/">{{shop.name}}</nuxt-link></h4>
+                            <nuxt-link :to="`/stores/${shop.id}`"><h4 class="category-name">{{shop.name}}</h4></nuxt-link>
                         </div>
                     </div>
                 </div>

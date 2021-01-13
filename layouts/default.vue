@@ -10,9 +10,9 @@
                             </a>
                         </div>
                         <div class="header-center">
-                            <a href="demo1.html" class="logo">
+                            <nuxt-link to="/" class="logo">
                                 <img src="../assets/images/logo.png" alt="logo" width="163" height="39" />
-                            </a>
+                            </nuxt-link>
                             <!-- End of Logo -->
                             <nav class="main-nav">
                                 <ul class="menu">
@@ -20,7 +20,7 @@
                                         <nuxt-link to="/">Home</nuxt-link>
                                     </li>
                                     <li>
-                                        <nuxt-link to="/products">Shops</nuxt-link>
+                                        <nuxt-link to="/stores">Shops</nuxt-link>
                                     </li>
                                     <li>
                                         <nuxt-link to="/products">All Products</nuxt-link>
@@ -156,9 +156,9 @@
                     <div class="footer-top">
                         <div class="row">
                             <div class="col-lg-3">
-                                <a href="demo1.html" class="logo-footer">
+                                <nuxt-link to="/" class="logo-footer">
                                     <img src="../assets/images/logo-footer.png" alt="logo-footer" width="163" height="39" />
-                                </a>
+                                </nuxt-link>
                                 <!-- End of FooterLogo -->
                             </div>
                             <div class="col-lg-9">
@@ -191,11 +191,11 @@
                                         </li>
                                         <li>
                                             <label>Email:</label>
-                                            <a href="#">mail@donald.com</a>
+                                            <a href="#">mail@jumga.com</a>
                                         </li>
                                         <li>
                                             <label>Address:</label>
-                                            <a href="#">123 Street Name, City, England</a>
+                                            <a href="#">123 Abule Egba, Lagos, Nigeria</a>
                                         </li>
                                         <li>
                                             <label>WORKING DAYS/HOURS</label>
