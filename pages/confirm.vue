@@ -2,9 +2,9 @@
   <div class="order">
         <div class="page-content pt-10 pb-10">
             <div class="step-by pt-2 pb-2 pr-4 pl-4">
-                <h3 class="title title-simple title-step"><a href="cart.html">1. Shopping Cart</a></h3>
-                <h3 class="title title-simple title-step visited"><a href="checkout.html">2. Checkout</a></h3>
-                <h3 class="title title-simple title-step active"><a href="order.html">3. Order Complete</a></h3>
+                <h3 class="title title-simple title-step visited"><nuxt-link to="/cart">1. Shopping Cart</nuxt-link></h3>
+                <h3 class="title title-simple title-step visited"><nuxt-link to="/checkout">2. Checkout</nuxt-link></h3>
+                <h3 class="title title-simple title-step active"><nuxt-link to="/confirm">3. Order Complete</nuxt-link></h3>
             </div>
             <div class="container mt-8">
                 <div class="order-message">

@@ -13,8 +13,7 @@
                         <label class="product-label label-new">new</label>
                     </div>
                     <div class="product-action-vertical">
-                        <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
-                            data-target="#addCartModal" title="Add to cart"><i class="fas fa-cart-plus"></i></a>
+                        <a href="#" class="btn-product-icon btn-cart" @click.prevent="addToCart(product)"><i class="fas fa-cart-plus"></i></a>
                     </div>
                 </figure>
                 <div class="product-details">
@@ -39,6 +38,11 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 export default {
+    data(){
+        return{
+            quantity: 1
+        }
+    },
     computed: {
         ...mapGetters({
             products: 'products',
@@ -46,8 +50,14 @@ export default {
     },
     methods: {
         ...mapActions({
-        getProducts: 'getProducts'
-        })
+            getProducts: 'getProducts',
+        }),
+        addToCart(item) {
+            this.$store.dispatch('addProductToCart', {
+                quantity: 1,
+                product: item
+            })
+        },
     },
     mounted() {
         this.getProducts();

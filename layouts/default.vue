@@ -50,12 +50,12 @@
                                 <div class="dropdown-box">
                                     <div class="product product-cart-header">
                                         <span class="product-cart-counts">{{cartItemCount}} item(s)</span>
-                                        <span><a href="cart.html">View cart</a></span>
+                                        <span><nuxt-link to="/cart">View cart</nuxt-link></span>
                                     </div>
                                     <div class="products scrollable">
                                         <div class="product product-cart" v-for="item in cart" :key="item.product.id">
                                             <div class="product-detail">
-                                                <a href="product.html" class="product-name">{{item.product.name}}</a>
+                                                <nuxt-link :to="`/${item.product.id}`" class="product-name">{{item.product.name}}</nuxt-link>
                                                 <div class="price-box">
                                                     <span class="product-quantity">{{item.quantity}}</span>
                                                     <span class="product-price">${{item.product.price}}</span>
@@ -79,7 +79,7 @@
                                     </div>
                                     <!-- End of Cart Total -->
                                     <div class="cart-action">
-                                        <a href="checkout.html" class="btn btn-dark"><span>Checkout</span></a>
+                                        <nuxt-link to="/checkout" class="btn btn-dark"><span>Checkout</span></nuxt-link>
                                     </div>
                                     <!-- End of Cart Action -->
                                 </div>

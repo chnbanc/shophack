@@ -37,6 +37,14 @@ export const getters = {
       total += item.product.price * item.quantity
     })
     return total
+  },
+
+  checkoutTotalPrice(state) {
+    let total = 0;
+    state.cart.forEach(item => {
+      total += (item.product.price * item.quantity)
+    })
+    return total+20
   }
 }
 export const mutations = {
