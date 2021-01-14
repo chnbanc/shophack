@@ -52,17 +52,6 @@
                             </div>
                             <label>Email address *</label>
                             <input type="text" class="form-control" name="email-address" required="" />
-                            <div class="form-checkbox mt-8">
-                                <input type="checkbox" class="custom-checkbox" id="create-account"
-                                    name="create-account">
-                                <label class="form-control-label" for="create-account">Create an account?</label>
-                            </div>
-                            <div class="form-checkbox mb-6">
-                                <input type="checkbox" class="custom-checkbox" id="different-address"
-                                    name="different-address">
-                                <label class="form-control-label" for="different-address">Ship to a different
-                                    address?</label>
-                            </div>
                             <h3 class="title title-simple text-left mb-3">Additional information</h3>
                             <label>Order Notes (optional)</label>
                             <textarea class="form-control" cols="30" rows="6"
@@ -80,31 +69,26 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="product-name">Beige knitted shoes <strong class="product-quantity">×&nbsp;1</strong></td>
-                                                <td class="product-total">$84.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="product-name">Beige knitted shoes <strong class="product-quantity">×&nbsp;1</strong></td>
-                                                <td class="product-total">$76.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="product-name">Beige knitted shoes <strong class="product-quantity">×&nbsp;1</strong></td>
-                                                <td class="product-total">$76.00</td>
+                                            <tr v-for="item in cart" :key="item.product.id">
+                                                <td class="product-name">{{item.product.name}} <strong class="product-quantity">×&nbsp;{{item.quantity}}</strong></td>
+                                                <td class="product-total">${{item.product.price}}.00</td>
                                             </tr>
                                             <tr class="summary-subtotal">
                                                 <td>
                                                     <h4 class="summary-subtitle">Subtotal</h4>
                                                 </td>
-                                                <td class="summary-subtotal-price">$220.00
+                                                <td class="summary-subtotal-price">${{cartTotalPrice}}
                                                 </td>												
+                                            </tr>
+                                            <tr>
+                                                <td class="product-name">Shipping <strong class="product-quantity">$20.00</strong></td>
                                             </tr>
                                             <tr class="summary-subtotal">
                                                 <td>
                                                     <h4 class="summary-subtitle">Total</h4>
                                                 </td>
                                                 <td>
-                                                    <p class="summary-total-price">$220.00</p>
+                                                    <p class="summary-total-price">${{checkoutTotalPrice}}</p>
                                                 </td>												
                                             </tr>
                                         </tbody>
@@ -137,8 +121,16 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
-
+    computed: {
+        ...mapGetters({
+            cart: 'cart',
+            cartItemCount: 'cartItemCount',
+            cartTotalPrice: 'cartTotalPrice',
+            checkoutTotalPrice: 'checkoutTotalPrice'
+        })
+    },
 }
 </script>
 

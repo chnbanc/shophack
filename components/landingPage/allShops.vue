@@ -1,8 +1,6 @@
 <template>
   <div>
-    <section class="grey-section pt-10 pb-10" data-animation-options="{
-                    'delay': '.3s'
-                }">
+    <section class="grey-section pt-10 pb-10"  v-if="shops.length">
         <div class="container pt-3">
             <h2 class="title">Browse Our Stores Available</h2>
             <div class="row">
@@ -23,16 +21,23 @@
             </div>
         </div>
     </section>
+      <div v-else class="my-30">
+          <spinner />
+      </div>
   </div>
 </template>
 
 <script>
+import spinner from '../spinner'
 import { mapGetters, mapActions } from 'vuex'
 export default {
     computed: {
         ...mapGetters({
             shops: 'shops',
         })
+    },
+    components: {
+        spinner
     },
     methods: {
         ...mapActions({
@@ -46,5 +51,7 @@ export default {
 </script>
 
 <style>
-
+.my-30{
+    margin-top: 30px;
+}
 </style>

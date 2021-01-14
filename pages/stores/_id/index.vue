@@ -18,15 +18,14 @@
                 <div class="product-wrap" v-for="product in products" :key="product.id">
                     <div class="product shadow-media">
                         <figure class="product-media">
-                            <!-- <nuxt-link :to="`/${product.id}`">
-                                <img :src='product.image' alt="product" width="280" height="315">
-                            </nuxt-link> -->
+                            <nuxt-link :to="`/${product.id}`">
+                                <img :src='product.images[0].image' alt="product" width="280" height="315">
+                            </nuxt-link>
                             <div class="product-label-group">
                                 <label class="product-label label-new">new</label>
                             </div>
                             <div class="product-action-vertical">
-                                <a href="#" class="btn-product-icon btn-cart" data-toggle="modal"
-                                    data-target="#addCartModal" title="Add to cart"><i class="fas fa-cart-plus"></i></a>
+                                <a href="#" class="btn-product-icon btn-cart" @click.prevent="addToCart(product)"><i class="fas fa-cart-plus"></i></a>
                             </div>
                         </figure>
                         <div class="product-details">
@@ -70,12 +69,27 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 export default {
     props: ['shop'],
     data() {
         return {
             products: this.shop.products
         }
+    },
+    methods: {
+        ...mapActions({
+            getProducts: 'getProducts',
+        }),
+        addToCart(item) {
+            this.$store.dispatch('addProductToCart', {
+                quantity: 1,
+                product: item
+            })
+        },
+    },
+    mounted() {
+        this.getProducts();
     }
 }
 </script>

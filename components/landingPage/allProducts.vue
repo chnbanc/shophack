@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section class="product-wrapper container mt-10 pt-3 pb-8">
+    <section class="product-wrapper container mt-10 pt-3 pb-8" v-if="products.length">
         <h2 class="title">Best Selling Products</h2>
         <div class="owl-theme row owl-nav-full cols-2 cols-md-3 cols-lg-4" >
             <div class="product" v-for="product in products" :key="product.public_reference_id">
@@ -32,16 +32,24 @@
         </div>
     </section>
 
+    <div v-else class="my-30">
+          <spinner />
+      </div>
+
   </div>
 </template>
 
 <script>
+import spinner from '../spinner'
 import { mapGetters, mapActions } from 'vuex'
 export default {
     data(){
         return{
             quantity: 1
         }
+    },
+    components: {
+        spinner
     },
     computed: {
         ...mapGetters({
