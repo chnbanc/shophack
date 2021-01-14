@@ -68,9 +68,9 @@
                                 <label>QTY:</label>
                                 <div class="product-form-group">
                                     <div class="input-group">
-                                        <button class="quantity-minus"><i class="fas fa-minus"></i></button>
-                                        <input class="quantity form-control" type="number" min="1" max="1000000">
-                                        <button class="quantity-minus"><i class="fas fa-plus"></i></button>
+                                        <button class="quantity-minus" @click="decrease()"><i class="fas fa-minus"></i></button>
+                                            <input class="quantity form-control" type="number" min="1" max="1000000" v-model="quantity">
+                                        <button class="quantity-minus" @click="increase()"><i class="fas fa-plus"></i></button>
                                     </div>
                                     <button class="btn-product btn-cart" @click="addToCart()"><i class="fas fa-cart-plus"></i>Add To
                                         Cart</button>
@@ -114,6 +114,7 @@ export default {
     props: ['product'],
     data() {
         return {
+            quantity: 1
             // cart: {
             //     product: this.product,
             //     quantity: 1,
@@ -131,10 +132,19 @@ export default {
         addToCart() {
             this.addProductToCart({
                 product: this.product,
-                quantity: 1
+                quantity: this.quantity
             })
+        },
+        decrease(){
+            if(this.quantity == 0){
+
+            } else {
+                this.quantity--
+            }   
+        },
+        increase(){
+            this.quantity++
         }
-        
     },
 
 }
