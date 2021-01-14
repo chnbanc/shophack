@@ -40,63 +40,42 @@
                                 <a href="#" class="cart-toggle">
                                     <span class="cart-label">
                                         <span class="cart-name">My Cart</span>
-                                        <span class="cart-price">$42.00</span>
+                                        <span class="cart-price">${{cartTotalPrice}}.00</span>
                                     </span>
                                     <i class="minicart-icon">
-                                        <span class="cart-count">2</span>
+                                        <span class="cart-count">{{cartItemCount}}</span>
                                     </i>
                                 </a>
                                 <!-- End of Cart Toggle -->
                                 <div class="dropdown-box">
                                     <div class="product product-cart-header">
-                                        <span class="product-cart-counts">2 items</span>
+                                        <span class="product-cart-counts">{{cartItemCount}} item(s)</span>
                                         <span><a href="cart.html">View cart</a></span>
                                     </div>
                                     <div class="products scrollable">
-                                        <div class="product product-cart">
+                                        <div class="product product-cart" v-for="item in cart" :key="item.product.id">
                                             <div class="product-detail">
-                                                <a href="product.html" class="product-name">Solid Pattern In Fashion Summer
-                                                    Dress</a>
+                                                <a href="product.html" class="product-name">{{item.product.name}}</a>
                                                 <div class="price-box">
-                                                    <span class="product-quantity">1</span>
-                                                    <span class="product-price">$129.00</span>
+                                                    <span class="product-quantity">{{item.quantity}}</span>
+                                                    <span class="product-price">${{item.product.price}}</span>
                                                 </div>
                                             </div>
                                             <figure class="product-media">
                                                 <a href="#">
-                                                    <img src="../assets/images/cart/product-1.jpg" alt="product" width="90"
+                                                    <img :src="item.product.images[0].image" alt="product" width="90"
                                                         height="90" />
                                                 </a>
-                                                <button class="btn btn-link btn-close">
+                                                <button class="btn btn-link btn-close" @click="removeProductFromCart(item.product)">
                                                     <i class="fas fa-times"></i>
                                                 </button>
                                             </figure>
                                         </div>
-                                        <!-- End of Cart Product -->
-                                        <div class="product product-cart">
-                                            <div class="product-detail">
-                                                <a href="product.html" class="product-name">Mackintosh Poket Backpack</a>
-                                                <div class="price-box">
-                                                    <span class="product-quantity">1</span>
-                                                    <span class="product-price">$98.00</span>
-                                                </div>
-                                            </div>
-                                            <figure class="product-media">
-                                                <a href="#">
-                                                    <img src="../assets/images/cart/product-2.jpg" alt="product" width="90"
-                                                        height="90" />
-                                                </a>
-                                                <button class="btn btn-link btn-close">
-                                                    <i class="fas fa-times"></i>
-                                                </button>
-                                            </figure>
-                                        </div>
-                                        <!-- End of Cart Product -->
                                     </div>
                                     <!-- End of Products  -->
                                     <div class="cart-total">
                                         <label>Subtotal:</label>
-                                        <span class="price">$42.00</span>
+                                        <span class="price">${{cartTotalPrice}}.00</span>
                                     </div>
                                     <!-- End of Cart Total -->
                                     <div class="cart-action">
@@ -260,7 +239,7 @@ import {
   CTabPanels,
   CTab,
   CTabPanel } from '@chakra-ui/vue'
-
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'DefaultLayout',
   head: {
@@ -268,23 +247,23 @@ export default {
             { src: "https://checkout.flutterwave.com/v3.js", body: true }
         ],
     },
-  components: {
-    CThemeProvider,
-    CReset,
-    CButton,
-    CModal,
-    CModalOverlay,
-    CModalContent,
-    CModalHeader,
-    CModalFooter,
-    CModalBody,
-    CModalCloseButton,
-    CTabs,
-    CTabList,
-    CTabPanels,
-    CTab,
-    CTabPanel
-  },
+    components: {
+        CThemeProvider,
+        CReset,
+        CButton,
+        CModal,
+        CModalOverlay,
+        CModalContent,
+        CModalHeader,
+        CModalFooter,
+        CModalBody,
+        CModalCloseButton,
+        CTabs,
+        CTabList,
+        CTabPanels,
+        CTab,
+        CTabPanel
+    },
     data () {
         return {
             isOpen: false,
@@ -319,7 +298,20 @@ export default {
                 console.log(error);
                 this.loading = false;
             }
+        },
+        removeProductFromCart(product) {
+            this.$store.dispatch('removeProductFromCart', product);
+        },
+        clearCartItem(){
+            this.$store.dispatch('clearCart')
         }
+    },
+    computed: {
+        ...mapGetters({
+            cart: 'cart',
+            cartItemCount: 'cartItemCount',
+            cartTotalPrice: 'cartTotalPrice'
+        })
     }
 }
 </script>

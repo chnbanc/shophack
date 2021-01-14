@@ -1,7 +1,8 @@
 import axios from 'axios'
 export const state = () => ({
   products: [],
-  shops: []
+  shops: [],
+  cart: []
 
 })
 
@@ -20,6 +21,22 @@ export const getters = {
 
   shops(state) {
     return state.shops
+  },
+
+  cart(state) {
+    return state.cart
+  },
+
+  cartItemCount(state) {
+    return state.cart.length
+  },
+
+  cartTotalPrice(state) {
+    let total = 0;
+    state.cart.forEach(item => {
+      total += item.product.price * item.quantity
+    })
+    return total
   }
 }
 export const mutations = {
@@ -28,6 +45,28 @@ export const mutations = {
   },
   SET_SHOPS(state, data) {
     state.shops = data
+  },
+  ADD_TO_CART(state, {product, quantity}) {
+
+    let productInCart = state.cart.find(item => {
+      return item.product.id === product.id
+    });
+    if (productInCart){
+      productInCart.quantity += quantity
+      return;
+    }
+    state.cart.push({
+      quantity,
+      product,
+    })
+  },
+  REMOVE_PRODUCT_FROM_CART (state, product) {
+    state.cart = state.cart.filter(item => {
+      return item.product.id !== product.id;
+    })
+  },
+  CLEAR_CART (state) {
+    state.cart = [];
   }
 }
 export const actions = {
@@ -46,5 +85,14 @@ export const actions = {
     } catch (e) {
         commit('SET_SHOPS', null)
     }
+  },
+  addProductToCart({commit}, {product, quantity}) {
+    commit ('ADD_TO_CART', {product, quantity})
+  },
+  removeProductFromCart({commit}, product) {
+    commit ('REMOVE_PRODUCT_FROM_CART', product)
+  },
+  clearCart({commit}) {
+    commit ('CLEAR_CART') 
   }
 }

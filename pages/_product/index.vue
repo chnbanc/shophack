@@ -72,7 +72,7 @@
                                         <input class="quantity form-control" type="number" min="1" max="1000000">
                                         <button class="quantity-minus"><i class="fas fa-plus"></i></button>
                                     </div>
-                                    <button class="btn-product btn-cart"><i class="fas fa-cart-plus"></i>Add To
+                                    <button class="btn-product btn-cart" @click="addToCart()"><i class="fas fa-cart-plus"></i>Add To
                                         Cart</button>
                                 </div>
                             </div>
@@ -108,12 +108,34 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import allProducts from '@/components/landingPage/allProducts'
 export default {
     props: ['product'],
+    data() {
+        return {
+            // cart: {
+            //     product: this.product,
+            //     quantity: 1,
+
+            // }
+        }
+    },
     components: {
         allProducts
-    }
+    },
+    methods: {
+        ...mapActions({
+            addProductToCart: 'addProductToCart'
+        }),
+        addToCart() {
+            this.addProductToCart({
+                product: this.product,
+                quantity: 1
+            })
+        }
+        
+    },
 
 }
 </script>
