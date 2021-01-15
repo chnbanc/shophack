@@ -47,8 +47,8 @@
                         </h3>
                         <p class=" ls-m text-dark font-primary mb-6">
                             Receives Payments from Ghana, Nigeria, Kenya and UK.</p>
-                        <a  @click="open" class="btn btn-outline btn-dark">Register
-                            Shop</a>
+                        <a  @click="open" class="btn btn-outline btn-dark">Login / Register
+                            Store</a>
                     </div>
                 </div>
             </div>
@@ -67,13 +67,41 @@
                         <c-box>
                             <c-tabs variant="enclosed-colored" is-fitted>
                                 <c-tab-list>
-                                    <c-tab>Register</c-tab>
                                     <c-tab>Login</c-tab>
+                                    <c-tab>Register</c-tab>
                                 </c-tab-list>
 
                                 <c-tab-panels>
                                     <c-tab-panel>
-                                        <div class="tab-pane active" id="register">
+                                        <div v-if="this.$auth.user" class="my-33">
+                                            <h4>You are logged in, Please held over to your <nuxt-link to="/dashboard"><span class="blue">Dashboard</span></nuxt-link></h4>
+                                        </div>
+                                        <div class="tab-pane active" id="signin" v-else>
+                                            <form action="#">
+                                                <div class="form-group">
+                                                    <p v-if="errors">{{errors}}</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="singin-email" class="mb-3">Email Address:</label>
+                                                    <input type="text" class="form-control" v-model="info.email" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="singin-password" class="mb-3">Password:</label>
+                                                    <input type="password" class="form-control" v-model="info.password"
+                                                        required />
+                                                </div>
+                                                <v-btn @click="loginUser(info)" class="btn btn-primary btn-block mb-3">
+                                                    <i class="fas fa-spin fa-spinner" v-if="loading"></i>
+                                                    {{ loading ? '' : 'LOGIN' }}
+                                                </v-btn>
+                                            </form>
+                                        </div>
+                                    </c-tab-panel>
+                                    <c-tab-panel>
+                                        <div v-if="this.$auth.user" class="my-33">
+                                            <h4>You are logged in, Please held over to your <nuxt-link to="/dashboard"><span class="blue">Dashboard</span></nuxt-link></h4>
+                                        </div>
+                                        <div class="tab-pane active" id="register" v-else>
                                             <h6>Approval of shop costs $20. You would be assigned a dispatch rider on confirmation of payment.</h6>
                                             <form action="#">
                                                 <div class="form-group">
@@ -142,31 +170,6 @@
                                                 <v-btn class="btn btn-primary btn-block" type="submit" @click="makePayment()">
                                                     <i class="fas fa-spin fa-spinner" v-if="loading"></i>
                                                         {{ loading ? '' : 'SIGN UP' }}
-                                                </v-btn>
-                                            </form>
-                                        </div>
-                                    </c-tab-panel>
-                                    <c-tab-panel>
-                                        <div v-if="this.$auth.user" class="my-33">
-                                            <h4>You are logged in, Please held over to your <nuxt-link to="/dashboard"><span class="blue">Dashboard</span></nuxt-link></h4>
-                                        </div>
-                                        <div class="tab-pane active" id="signin" v-else>
-                                            <form action="#">
-                                                <div class="form-group">
-                                                    <p v-if="errors">{{errors}}</p>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="singin-email" class="mb-3">Email Address:</label>
-                                                    <input type="text" class="form-control" v-model="info.email" required />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="singin-password" class="mb-3">Password:</label>
-                                                    <input type="password" class="form-control" v-model="info.password"
-                                                        required />
-                                                </div>
-                                                <v-btn @click="loginUser(info)" class="btn btn-primary btn-block mb-3">
-                                                    <i class="fas fa-spin fa-spinner" v-if="loading"></i>
-                                                    {{ loading ? '' : 'LOGIN' }}
                                                 </v-btn>
                                             </form>
                                         </div>

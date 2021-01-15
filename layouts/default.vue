@@ -29,10 +29,10 @@
                             </nav>
                         </div>
                         <div class="header-right">
-                            <v-btn to="/products" class="login" @click="open" v-if="!this.$auth.user">
+                            <!-- <v-btn to="/products" class="login" @click="open" v-if="!this.$auth.user">
                                 <i class="fas fa-user"></i>
                                 <span>Login</span>
-                            </v-btn>
+                            </v-btn> -->
                             <nuxt-link to="/dashboard" v-if="this.$auth.user">DASHBOARD</nuxt-link>
                             <!-- End of Login -->
                             <span class="divider"></span>
