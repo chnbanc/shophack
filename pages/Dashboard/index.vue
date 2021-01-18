@@ -49,7 +49,7 @@
 
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <label>Set Price </label>
+                                        <label>Set Price ($)</label>
                                         <input type="number" class="form-control" name="first_name" required="" v-model="addProductInfo.price">
                                     </div>
                                     <div class="col-sm-6">
@@ -57,9 +57,6 @@
                                         <input type="number" class="form-control" name="first_name" required="" v-model="addProductInfo.number_of_stock">
                                     </div>
                                 </div>
-
-                                <label>Delivery Fee ({{this.$auth.user.data.country}})</label>
-                                <input type="number" class="form-control" name="current_password" v-model="addProductInfo.delivery_fee">
 
                                 <label for="singin-password">Upload Store Cover Image:</label>
                                 <input type="file" accept="image/png, image/jpeg" v-on:change="onChange" multiple class="form-control">
@@ -83,13 +80,14 @@ export default {
     ,
     data () {
         return {
+            loading: false,
             addProductInfo: {
                 name: '',
                 description: '',
                 price: '',
                 number_of_stock: '',
                 store_id: this.$auth.user.data.store.id,
-                delivery_fee: '',
+                delivery_fee: 20,
             },
         }
         image: null
@@ -116,11 +114,12 @@ export default {
                     'Content-Type': 'multipart/form-data'
                     }
                 })
+                this.$toasted.success('Product has been added successfully')
                 return response
-                // this.$router.push('/landlord')
             } catch(error){
                 this.loading = false;
                 this.errors = error.response.data.message
+                this.$toasted.error('An error occured, check all fields and try again')
             }
         },
     }
