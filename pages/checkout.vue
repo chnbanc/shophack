@@ -14,48 +14,46 @@
                             <div class="row">
                                 <div class="col-xs-6">
                                     <label>First Name *</label>
-                                    <input type="text" class="form-control" name="first-name" required="" />
+                                    <input type="text" class="form-control" required=""  v-model="checkoutDetails.first_name"/>
                                 </div>
                                 <div class="col-xs-6">
                                     <label>Last Name *</label>
-                                    <input type="text" class="form-control" name="last-name" required="" />
+                                    <input type="text" class="form-control" required="" v-model="checkoutDetails.last_name" />
                                 </div>
                             </div>
                             <label>Company Name(Optional)</label>
-                            <input type="text" class="form-control" name="company-name" required="" />
+                            <input type="text" class="form-control" required="" v-model="checkoutDetails.company_name" />
                             <label>Country / Region *</label>
-                            <input type="text" class="form-control" name="country" required="" />
+                            <input type="text" class="form-control" required="" v-model="checkoutDetails.country"/>
                             <label>Street Address *</label>
-                            <input type="text" class="form-control" name="address1" required=""
-                                placeholder="House number and Street name" />
-                            <input type="text" class="form-control" name="address2" required=""
-                                placeholder="Appartments, suite, unit etc ..." />
+                            <input type="text" class="form-control" required=""
+                                placeholder="House number and Street name" v-model="checkoutDetails.address"/>
                             <div class="row">
                                 <div class="col-xs-6">
                                     <label>Town / City *</label>
-                                    <input type="text" class="form-control" name="city" required="" />
+                                    <input type="text" class="form-control" required="" v-model="checkoutDetails.city"/>
                                 </div>
                                 <div class="col-xs-6">
-                                    <label>State / County *</label>
-                                    <input type="text" class="form-control" name="state" required="" />
+                                    <label>State *</label>
+                                    <input type="text" class="form-control" name="state" required="" v-model="checkoutDetails.state"/>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-6">
                                     <label>Postcode / ZIP *</label>
-                                    <input type="text" class="form-control" name="postcode" required="" />
+                                    <input type="text" class="form-control" required="" v-model="checkoutDetails.post_code"/>
                                 </div>
                                 <div class="col-xs-6">
                                     <label>Phone *</label>
-                                    <input type="text" class="form-control" name="phone" required="" />
+                                    <input type="text" class="form-control" required="" v-model="checkoutDetails.phone_number"/>
                                 </div>
                             </div>
                             <label>Email address *</label>
-                            <input type="text" class="form-control" name="email-address" required="" />
+                            <input type="text" class="form-control" name="email-address" required="" v-model="checkoutDetails.email"/>
                             <h3 class="title title-simple text-left mb-3">Additional information</h3>
                             <label>Order Notes (optional)</label>
                             <textarea class="form-control" cols="30" rows="6"
-                                placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
+                                placeholder="Notes about your order, e.g. special notes for delivery" v-model="checkoutDetails.notes"></textarea>
                         </div>
                         <aside class="col-lg-5 sticky-sidebar-wrapper">
                             <div class="sticky-sidebar" data-sticky-options="{'bottom': 50}">
@@ -81,7 +79,7 @@
                                                 </td>												
                                             </tr>
                                             <tr>
-                                                <td class="product-name">Shipping <strong class="product-quantity">$20.00</strong></td>
+                                                <td class="product-name">Delivery <strong class="product-quantity">$20.00</strong></td>
                                             </tr>
                                             <tr class="summary-subtotal">
                                                 <td>
@@ -109,10 +107,15 @@
                                         </div>
                                     </div>
                                     <p class="checkout-info">Your personal data will used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
-                                    <button type="submit" class="btn btn-dark btn-order">Place Order</button>
+                                    <v-btn class="btn btn-primary btn-block" type="submit" @click="placeOrder()">
+                                        <i class="fas fa-spin fa-spinner" v-if="loading"></i>
+                                            {{ loading ? '' : 'PLACE ORDER' }}
+                                    </v-btn>
                                 </div>
+                                
                             </div>
                         </aside>
+                        <button @click.prevent="hey()">do magic</button>
                     </div>
                 </form>
             </div>
@@ -123,6 +126,63 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 export default {
+    data() {
+        return {
+            error: '',
+            checkoutDetails: {
+                grand_total: '',
+                sub_total: '',
+                delivery_fee: 20,
+                first_name: 'tosin',
+                last_name: 'ogunfowote',
+                company_name: 'tofmat',
+                address: 'asasas',
+                city: 'asa',
+                country: 'Nigeria',
+                state: 'asas',
+                email: 'tofmatt@gmail.com',
+                post_code: '121223',
+                phone_number: '08145485678',
+                notes: 'asasasas',
+                items: [],
+                callback_url: 'asasasas',
+                item_count: ''
+            }
+            
+        }
+    },
+    methods: {
+        async placeOrder() {
+            if (this.cart.length){
+                this.checkoutDetails.callback_url = `localhost:3000/`
+                this.checkoutDetails.grand_total = this.checkoutTotalPrice
+                this.checkoutDetails.sub_total = this.cartTotalPrice
+                this.checkoutDetails.item_count = this.cartItemCount
+                this.checkoutDetails.items = this.cart.map(cart => {
+                    return {
+                        product_id: cart.product.id,
+                        product_name: cart.product.name,
+                        quantity: cart.quantity,
+                        price: cart.product.price
+                    }
+                })
+                try {
+                    this.loading = true;
+                    const response = await this.$axios.post('/checkout/order', this.checkoutDetails)
+                    window.location = response.data.data.payment_link.link
+                    this.loading = false
+                    // this.$toast.success('Please hold, while we process your payment.')
+                    return response
+                } catch(error) {
+                    this.loading = false
+                    this.error = error.response.data.message
+                    // this.$toast.success('There was a problem sending your payment.')
+                }
+            } else {
+                console.log('no cart');
+            }
+        },
+    },
     computed: {
         ...mapGetters({
             cart: 'cart',
