@@ -379,7 +379,7 @@ export default {
     width: 80rem !important;
     padding: 20px;
     max-height: 80vh !important;
-    overflow: auto !important;
+    overflow: scroll !important;
 }
 .css-6baq7i-Yn{
     font-size: 17px;
@@ -389,7 +389,7 @@ export default {
     max-width: 80rem !important;
     padding: 20px;
     max-height: 80vh !important;
-    overflow: auto !important; 
+    overflow: scroll !important; 
 }
 .css-6ibo7w{
     font-size: 17px;
