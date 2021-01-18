@@ -115,6 +115,7 @@ export default {
                     }
                 })
                 this.$toasted.success('Product has been added successfully')
+                this.loading = false;
                 return response
             } catch(error){
                 this.loading = false;
