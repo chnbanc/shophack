@@ -292,10 +292,9 @@ export default {
                 this.$router.push('/dashboard')
                 this.close()
                 return response;
-                this.$toast.success('You are logged in')
+                this.$toasted.success('You are logged in')
             } catch (error){
                 this.errors = error.response.data.message
-                console.log(error);
                 this.loading = false;
             }
         },

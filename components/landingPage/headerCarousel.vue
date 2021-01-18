@@ -273,7 +273,6 @@ export default {
             this.image = event.target.files[0]
         },
         async register(data){
-            console.log(data.transaction_id);
             this.addUserInfo.transaction_id = data.transaction_id
             let formData = new FormData()
             formData.append('image', this.image, this.image.name)
@@ -360,7 +359,6 @@ export default {
             } catch (error){
                 this.errors = error.response.data.message
                 this.$toasted.error('An error occoured, check your details')
-                console.log(error);
                 this.loading = false;
             }
         }
