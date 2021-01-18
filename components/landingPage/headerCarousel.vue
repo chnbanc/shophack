@@ -383,6 +383,15 @@ export default {
 .css-6baq7i-Yn{
     font-size: 17px;
 }
+.css-6ibo7w{
+    width: 80rem !important;
+    padding: 20px;
+    max-height: 80vh !important;
+    overflow: auto !important; 
+}
+.css-6ibo7w{
+    font-size: 17px;
+}
 .form-group input {
     margin-bottom: 20px;
 }
