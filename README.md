@@ -1,7 +1,7 @@
 # shopHack
 BUILDING JUMGA. AND ITS FUNCTIONALITIES.
 
-Jumga is built with the Nuxt.JS (VueJS) framework for the frontend which is contained in this repo and the backend is built on the Laravel (php) framework. Which can be found in this repo. https://github.com/Eazybright/Jumga-for-flutterwave-api
+Jumga is built with the Nuxt.JS (VueJS) framework for the frontend which is contained in this repo and the backend is built on the Laravel (php) framework. Which can be found in this repo. https://github.com/Eazybright/Jumga-api
 
 On initial load of the app, users can view various stores, and products. They can also add products to their cart immediately and proceed to checkout. No registrations needed for the users, all details are collected on checkout. Details (name of products, quantity, and price) of their order is sent to their email before and after payment, including their receipt. We used the Flutterwave standard payment method in collecting payments on checkout.
 
