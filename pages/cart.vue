@@ -49,6 +49,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <button class="my-10" @click.prevent="clearCartItem()">Clear Cart</button>
                     </div>
                     <aside class="col-lg-4 sticky-sidebar-wrapper">
                         <div class="sticky-sidebar" data-sticky-options="{'bottom': 20}">
@@ -138,6 +139,7 @@ export default {
     methods: {
         removeProductFromCart(product) {
             this.$store.dispatch('removeProductFromCart', product);
+            this.$toasted.success('Removed product from cart')
         },
         clearCartItem(){
             this.$store.dispatch('clearCart')

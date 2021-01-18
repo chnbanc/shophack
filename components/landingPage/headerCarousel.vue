@@ -295,7 +295,7 @@ export default {
             formData.append('name_of_store', this.addUserInfo.name_of_store)
             try {
                 this.loading = true;
-                // this.$toast.show('Signing you up')
+                this.$toasted.show('Signing you up')
                 const response = await this.$axios.post('/auth/register', formData, {
                     headers: {
                     'Content-Type': 'multipart/form-data'
@@ -304,14 +304,14 @@ export default {
                 await this.$auth.loginWith('local', {
                 data: this.addUserInfo
             })
-            // this.$toast.success('You have successfully registered')
+            this.$toasted.success('You have successfully registered')
             this.$router.push('/dashboard')
+            this.$toasted.success('Welcome to your dashboard')
             return response;
-            // this.$toast.success('Welcome to your dashboard')
             } catch(error) {
                 this.loading = false;
                 this.errors = error.response.data.message
-                // this.$toast.info('There was a problem signing up, check your credentials');
+                this.$toasted.error('There was a problem signing up, check your credentials');
             }
         },
         makePayment() {
@@ -328,7 +328,7 @@ export default {
                     name: this.addUserInfo.name,
                 },
                 callback: data => { // specified callback function
-                    // this.$toast.success('Registering your Store.')
+                    this.$toasted.success('Registering your Store.')
                     const that = this
                     that.register(data)
                 },
@@ -357,11 +357,12 @@ export default {
                 data: loginInfo
             })
                 this.$router.push('/dashboard')
+                this.$toasted.success('You are logged in')
                 this.close()
                 return response;
-                this.$toast.success('You are logged in')
             } catch (error){
                 this.errors = error.response.data.message
+                this.$toasted.error('An error occoured, check your details')
                 console.log(error);
                 this.loading = false;
             }

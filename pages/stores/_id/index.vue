@@ -86,6 +86,7 @@ export default {
                 quantity: 1,
                 product: item
             })
+            this.$toasted.success('Product added to cart')
         },
     },
     mounted() {

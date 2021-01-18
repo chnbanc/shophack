@@ -112,10 +112,8 @@
                                             {{ loading ? '' : 'PLACE ORDER' }}
                                     </v-btn>
                                 </div>
-                                
                             </div>
                         </aside>
-                        <button @click.prevent="hey()">do magic</button>
                     </div>
                 </form>
             </div>
@@ -171,17 +169,17 @@ export default {
                     const response = await this.$axios.post('/checkout/order', this.checkoutDetails)
                     window.location = response.data.data.payment_link.link
                     this.loading = false
-                    // this.$toast.success('Please hold, while we process your payment.')
+                    this.$toasted.success('Please hold, while we process your payment.')
                     return response
                 } catch(error) {
                     this.loading = false
                     this.error = error.response.data.message
-                    // this.$toast.success('There was a problem sending your payment.')
+                    this.$toast.error('There was a problem sending your payment.')
                 }
             } else {
-                console.log('no cart');
+                this.$toasted.error('Please add some products to your cart')
             }
-        },
+        }
     },
     computed: {
         ...mapGetters({

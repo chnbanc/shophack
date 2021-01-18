@@ -134,6 +134,7 @@ export default {
                 product: this.product,
                 quantity: this.quantity
             })
+            this.$toasted.success('Product added to cart')
         },
         decrease(){
             if(this.quantity == 1){

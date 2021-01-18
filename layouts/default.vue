@@ -20,7 +20,7 @@
                                         <nuxt-link to="/">Home</nuxt-link>
                                     </li>
                                     <li>
-                                        <nuxt-link to="/stores">Shops</nuxt-link>
+                                        <nuxt-link to="/stores">Stores</nuxt-link>
                                     </li>
                                     <li>
                                         <nuxt-link to="/products">All Products</nuxt-link>
@@ -301,9 +301,11 @@ export default {
         },
         removeProductFromCart(product) {
             this.$store.dispatch('removeProductFromCart', product);
+            this.$toasted.success('Removed product from cart')
         },
         clearCartItem(){
             this.$store.dispatch('clearCart')
+            this.$toasted.success('Cart has been cleared')
         }
     },
     computed: {
