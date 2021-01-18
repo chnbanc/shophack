@@ -101,7 +101,7 @@
                     <p class="email">mail@donald.com</p>
                 </div>
 
-                <a href="shop.html" class="btn btn-icon-left btn-back btn-md mb-4"><i class="fas fa-arrow-left"></i> Back to List</a>
+                <nuxt-link to="/" class="btn btn-icon-left btn-back btn-md mb-4"><i class="fas fa-arrow-left"></i> Back to Home</nuxt-link>
             </div>
         </div>
   </div>

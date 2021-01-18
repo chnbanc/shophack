@@ -385,7 +385,7 @@ export default {
 }
 
 .css-1ugzb3c{
-    width: 80rem !important;
+    max-width: 80rem !important;
     padding: 20px;
     max-height: 80vh !important;
     overflow: auto !important; 
