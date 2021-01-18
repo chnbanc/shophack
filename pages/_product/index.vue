@@ -16,7 +16,7 @@
                         <div class="product-details">
                             <div class="product-navigation">
                                 <ul class="breadcrumb breadcrumb-lg">
-                                    <li><a href="demo1.html"><i class="fas fa-home"></i></a></li>
+                                    <li><a href="/"><i class="fas fa-home"></i></a></li>
                                     <li><a href="#" class="active">Products</a></li>
                                     <li>Detail</li>
                                 </ul>
