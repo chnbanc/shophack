@@ -238,23 +238,23 @@ export default {
             isOpen: false,
             banks: [],
             addUserInfo: {
-                name: 'Tosin Stores ',
-                email: 'tofmatot@gmail.com',
-                description: 'asass',
+                name: '',
+                email: '',
+                description: '',
                 role: 'seller',
-                password: 'Ogunfowote400',
-                account_number: '3028398370',
-                phone_number: '08145485679',
-                account_name: 'Tosin Ogunfowote',
+                password: '',
+                account_number: '',
+                phone_number: '',
+                account_name: '',
                 account_bank_code: '',
                 country: '',
                 transaction_id: '',
-                location: 'Obafemi Awolowo University',
-                name_of_store: 'Eazy Store'
+                location: '',
+                name_of_store: ''
             },
             info : {
-                email: 'tofmatt@gmail.com',
-                password: 'Ogunfowote400'
+                email: '',
+                password: ''
             },
             loading: false,
             errors: '',
