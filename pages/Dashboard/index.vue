@@ -21,7 +21,7 @@
                             <a class="nav-link" href="#orders">Orders</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Logout</a>
+                            <a href="#" text @click="$auth.logout()">Logout</a>
                         </li>
                         <div class="my-33">
                             <h5>Attached Dispatch Rider:</h5>
@@ -87,7 +87,7 @@ export default {
                 price: '',
                 number_of_stock: '',
                 store_id: this.$auth.user.data.store.id,
-                delivery_fee: 20,
+                delivery_fee: 150,
             },
         }
         image: null

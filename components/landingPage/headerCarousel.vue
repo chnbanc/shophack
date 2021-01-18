@@ -103,7 +103,7 @@
                                             </div>
                                             <div class="tab-pane active" id="register" v-else>
                                                 <h6>Approval of shop costs $20. You would be assigned a dispatch rider on confirmation of payment.</h6>
-                                                <form action="#">
+                                                <form @submit.prevent="makePayment()">
                                                     <div class="form-group">
                                                         <label for="singin-email">Your Full Name:</label>
                                                         <input type="text" class="form-control"
@@ -136,14 +136,14 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="singin-email">Country of Residence</label>
-                                                        <select v-model="addUserInfo.country" class="form-control" @change="attachBanks()">
+                                                        <select v-model="addUserInfo.country" class="form-control" @change="attachBanks()" required>
                                                             <option disabled value="">Please select country</option>
                                                             <option v-for="country in countries" :value="country.name" :key="country.id">{{country.name}}</option>
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="singin-email">Bank Name</label>
-                                                        <select v-model="addUserInfo.account_bank_code" class="form-control">
+                                                        <select v-model="addUserInfo.account_bank_code" class="form-control" required>
                                                             <option disabled value="">Please select bank</option>
                                                             <option v-for="bank in banks" :value="bank.code" :key="bank.id">{{bank.name}}</option>
                                                         </select>
@@ -165,12 +165,12 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="singin-password">Upload Store Cover Image:</label>
-                                                        <input type="file" accept="image/png, image/jpeg" v-on:change="onChange" class="form-control">
+                                                        <input type="file" required accept="image/png, image/jpeg" v-on:change="onChange" class="form-control">
                                                     </div>
-                                                    <v-btn class="btn btn-primary btn-block" type="submit" @click="makePayment()">
+                                                    <button class="btn btn-primary btn-block" type="submit">
                                                         <i class="fas fa-spin fa-spinner" v-if="loading"></i>
                                                             {{ loading ? '' : 'SIGN UP' }}
-                                                    </v-btn>
+                                                    </button>
                                                 </form>
                                             </div>
                                         </c-tab-panel>
@@ -238,19 +238,19 @@ export default {
             isOpen: false,
             banks: [],
             addUserInfo: {
-                name: 'Tosin ',
-                email: 'tofmatt@gmail.com',
+                name: 'Tosin Stores ',
+                email: 'tofmatot@gmail.com',
                 description: 'asass',
                 role: 'seller',
                 password: 'Ogunfowote400',
                 account_number: '3028398370',
-                phone_number: '08145485678',
+                phone_number: '08145485679',
                 account_name: 'Tosin Ogunfowote',
                 account_bank_code: '',
                 country: '',
                 transaction_id: '',
-                location: 'Bamidele',
-                name_of_store: 'Tosins Store'
+                location: 'Obafemi Awolowo University',
+                name_of_store: 'Eazy Store'
             },
             info : {
                 email: 'tofmatt@gmail.com',
@@ -298,12 +298,12 @@ export default {
                     }
                 })
                 await this.$auth.loginWith('local', {
-                data: this.addUserInfo
-            })
-            this.$toasted.success('You have successfully registered')
-            this.$router.push('/dashboard')
-            this.$toasted.success('Welcome to your dashboard')
-            return response;
+                    data: this.addUserInfo
+                })
+                this.$toasted.success('You have successfully registered')
+                this.$router.push('/dashboard')
+                this.$toasted.success('Welcome to your dashboard')
+                return response;
             } catch(error) {
                 this.loading = false;
                 this.errors = error.response.data.message
@@ -311,6 +311,7 @@ export default {
             }
         },
         makePayment() {
+            this.loading = true
             FlutterwaveCheckout({
                 public_key: "FLWPUBK_TEST-ffd61da84604886eeb5e71b9a2ac5732-X",
                 tx_ref: "hooli-tx-1920bbtyt",

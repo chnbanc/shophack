@@ -44,7 +44,7 @@ export const getters = {
     state.cart.forEach(item => {
       total += (item.product.price * item.quantity)
     })
-    return total+20
+    return total+150
   }
 }
 export const mutations = {

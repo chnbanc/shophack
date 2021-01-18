@@ -6,7 +6,7 @@
             <div class="product" v-for="product in products" :key="product.public_reference_id">
                 <figure class="product-media">
                     <nuxt-link :to="`/${product.id}`">
-                        <img :src='product.images[0].image' alt="Blue Pinafore Denim Dress"
+                        <img :src='product.images[0].image' class="productImage" alt="Blue Pinafore Denim Dress"
                             width="280" height="315">
                     </nuxt-link>
                     <div class="product-label-group">
@@ -75,5 +75,8 @@ export default {
 </script>
 
 <style>
-
+.productImage {
+    width: 280px !important;
+    height: 315px !important;
+}
 </style>

@@ -79,7 +79,7 @@
                                                 </td>												
                                             </tr>
                                             <tr>
-                                                <td class="product-name">Delivery <strong class="product-quantity">$20.00</strong></td>
+                                                <td class="product-name">Delivery <strong class="product-quantity">$150.00</strong></td>
                                             </tr>
                                             <tr class="summary-subtotal">
                                                 <td>
@@ -126,11 +126,12 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
     data() {
         return {
+            loading: '',
             error: '',
             checkoutDetails: {
                 grand_total: '',
                 sub_total: '',
-                delivery_fee: 20,
+                delivery_fee: 150,
                 first_name: 'tosin',
                 last_name: 'ogunfowote',
                 company_name: 'tofmat',
@@ -143,7 +144,6 @@ export default {
                 phone_number: '08145485678',
                 notes: 'asasasas',
                 items: [],
-                callback_url: 'asasasas',
                 item_count: ''
             }
             
@@ -152,7 +152,6 @@ export default {
     methods: {
         async placeOrder() {
             if (this.cart.length){
-                this.checkoutDetails.callback_url = `localhost:3000/`
                 this.checkoutDetails.grand_total = this.checkoutTotalPrice
                 this.checkoutDetails.sub_total = this.cartTotalPrice
                 this.checkoutDetails.item_count = this.cartItemCount

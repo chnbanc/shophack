@@ -10,7 +10,7 @@
                         <nuxt-link :to="`/stores/${shop.id}`">
                             <figure class="category-media">
                                 <img :src='shop.image' alt="category"
-                                    width="280" height="280" />
+                                    width="280" height="280" class="shopImage" />
                             </figure>
                         </nuxt-link>
                         <div class="category-content">
@@ -53,5 +53,10 @@ export default {
 <style>
 .my-30{
     margin-top: 30px;
+}
+.shopImage{ 
+    width: 280px !important;
+    height: 280px !important;
+
 }
 </style>

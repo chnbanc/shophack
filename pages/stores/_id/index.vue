@@ -14,7 +14,7 @@
                     <li>{{shop.name}}</li>
                 </ul>
             </nav>
-            <div class="row cols-2 cols-sm-3 cols-md-4 product-wrapper my-30">
+            <div class="row cols-2 cols-sm-3 cols-md-4 product-wrapper my-30" v-if="shop.products.length">
                 <div class="product-wrap" v-for="product in products" :key="product.id">
                     <div class="product shadow-media">
                         <figure class="product-media">
@@ -42,6 +42,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div v-else class="my-30">
+                <h3>{{shop.name}} has not uploaded any product </h3>
             </div>
             <nav class="toolbox toolbox-pagination">
                 <p class="toolbox-item show-info d-block">Showing <span>1 of ..</span> Products</p>

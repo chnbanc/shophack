@@ -72,7 +72,7 @@
                                                     <div class="custom-radio">
                                                         <input type="radio" id="free-shipping" name="shipping" class="custom-control-input" checked>
                                                         <label class="custom-control-label" for="free-shipping">
-                                                            Fast Delivery ($20)</label>
+                                                            Fast Delivery ($150)</label>
                                                     </div>
                                                 </li>
                                                 <li>
